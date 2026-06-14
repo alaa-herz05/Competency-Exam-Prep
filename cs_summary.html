@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملخص دوسية الحاسوب التنافسي 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0D1B2A;
+    --blue:   #1A56DB;
+    --cyan:   #06B6D4;
+    --green:  #10B981;
+    --amber:  #F59E0B;
+    --red:    #EF4444;
+    --purple: #8B5CF6;
+    --bg:     #F0F4FF;
+    --card:   #FFFFFF;
+    --text:   #1E293B;
+    --muted:  #64748B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    direction: rtl;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3a5f 60%, #0e4d8a 100%);
+    color: white;
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(6,182,212,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(26,86,219,0.2) 0%, transparent 50%);
+  }
+  header .badge {
+    display: inline-block;
+    background: rgba(6,182,212,0.2);
+    border: 1px solid rgba(6,182,212,0.5);
+    color: var(--cyan);
+    padding: 0.35rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+  header h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+  header h1 span { color: var(--cyan); }
+  header p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: white;
+    border-bottom: 3px solid var(--bg);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .stat-item {
+    padding: 1.2rem 2.5rem;
+    text-align: center;
+    border-left: 1px solid #E2E8F0;
+  }
+  .stat-item:last-child { border-left: none; }
+  .stat-num {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--blue);
+    display: block;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+
+  /* MAIN */
+  main {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), transparent);
+  }
+
+  /* TOPIC GRID */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .topic-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .topic-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+  .topic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 5px; height: 100%;
+    background: var(--accent);
+    border-radius: 0 16px 16px 0;
+  }
+
+  .topic-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .topic-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    background: color-mix(in srgb, var(--accent) 15%, white);
+  }
+  .topic-name { font-size: 1.05rem; font-weight: 800; color: var(--navy); line-height: 1.3; }
+  .topic-sub  { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+  .freq-bar {
+    background: #F1F5F9;
+    border-radius: 999px;
+    height: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  .freq-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 1s ease;
+  }
+  .freq-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .topic-desc {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.88rem;
+    color: #475569;
+    line-height: 1.7;
+    border-top: 1px solid #F1F5F9;
+    padding-top: 0.85rem;
+    margin-top: 0.5rem;
+  }
+
+  /* DEEP DIVES */
+  .deep-dive {
+    background: var(--card);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    overflow: hidden;
+  }
+  .deep-dive-header {
+    padding: 1.2rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--acc2) 8%, white), white);
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .deep-dive-header .icon { font-size: 1.4rem; }
+  .deep-dive-header h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); flex: 1; }
+  .deep-dive-header .arrow { color: var(--muted); font-size: 0.9rem; }
+  .deep-dive-body { padding: 1.5rem 1.8rem; display: none; }
+  .deep-dive-body.open { display: block; }
+
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .concept-chip {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+  }
+  .concept-chip .term {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .concept-chip .term .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--acc2);
+    flex-shrink: 0;
+  }
+  .concept-chip .def {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.82rem;
+    color: #64748B;
+    line-height: 1.55;
+  }
+
+  /* TIPS BOX */
+  .tips-box {
+    background: linear-gradient(135deg, #0D1B2A, #1A3A5C);
+    color: white;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .tips-box h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--cyan);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tips-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0.75rem; }
+  .tips-list li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+  .tips-list li::before {
+    content: '✦';
+    color: var(--cyan);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1px solid #E2E8F0;
+  }
+
+  @media (max-width: 600px) {
+    .stat-item { padding: 1rem 1.2rem; }
+    .stat-num { font-size: 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">📚 تحليل شامل · 1140+ سؤال</div>
+  <h1>دوسية الحاسوب <span>التنافسي 2026</span></h1>
+  <p>تحليل أبرز المواضيع المتكررة وملخص تعليمي مبسّط لكل محور رئيسي</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">1140+</span><span class="stat-label">سؤال تنافسي</span></div>
+  <div class="stat-item"><span class="stat-num">8</span><span class="stat-label">محاور رئيسية</span></div>
+  <div class="stat-item"><span class="stat-num">481</span><span class="stat-label">صفحة</span></div>
+  <div class="stat-item"><span class="stat-num">2026</span><span class="stat-label">إعداد أ. حسين الشلول</span></div>
+</div>
+
+<main>
+
+  <!-- TOPIC OVERVIEW -->
+  <h2 class="section-title">🔥 أكثر المواضيع تكراراً في الأسئلة</h2>
+
+  <div class="topics-grid">
+
+    <div class="topic-card" style="--accent:#1A56DB">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#1A56DB">💡</div>
+        <div>
+          <div class="topic-name">مزايا الحاسوب واستخداماته</div>
+          <div class="topic-sub">السرعة · الدقة · الأتمتة · المعالجة</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:100%; background:#1A56DB"></div></div>
+      <div class="freq-label"><span>الأعلى تكراراً</span><span>~134 سؤال</span></div>
+      <div class="topic-desc">
+        أسئلة تقيس فهم مزايا الحاسوب مثل السرعة الفائقة في معالجة البيانات الضخمة، والدقة المتناهية، والأتمتة الصناعية، والنمذجة والمحاكاة العلمية. يُختبر الطالب على تمييز الميزة الصحيحة للحاسوب في سياق معين.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#8B5CF6">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#8B5CF6">⌨️</div>
+        <div>
+          <div class="topic-name">الخوارزميات والبرمجة</div>
+          <div class="topic-sub">OOP · خوارزميات البحث والترتيب · هياكل البيانات</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:84%; background:#8B5CF6"></div></div>
+      <div class="freq-label"><span>تكرار عالٍ جداً</span><span>~113 سؤال</span></div>
+      <div class="topic-desc">
+        يشمل مفاهيم البرمجة الموجهة للكائنات (OOP) كالتجريد والتغليف والوراثة، وخوارزميات الفرز والبحث، وهياكل البيانات كالقوائم المترابطة والمصفوفات، وكذلك الاستدعاء الذاتي والتكرار.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#EF4444">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#EF4444">🛡️</div>
+        <div>
+          <div class="topic-name">الأمن السيبراني والبرمجيات الخبيثة</div>
+          <div class="topic-sub">فيروسات · هجمات · حماية · تشفير</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:68%; background:#EF4444"></div></div>
+      <div class="freq-label"><span>تكرار عالٍ</span><span>~91 سؤال</span></div>
+      <div class="topic-desc">
+        أسئلة تغطي أنواع البرمجيات الخبيثة (فيروسات، ديدان، أحصنة طروادة، برامج فدية، تجسس)، وآليات الحماية كجدران الحماية وبرامج مكافحة الفيروسات، وأساليب الهجوم كالهندسة الاجتماعية والتصيد.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#06B6D4">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#06B6D4">🌐</div>
+        <div>
+          <div class="topic-name">الشبكات والإنترنت</div>
+          <div class="topic-sub">بروتوكولات · OSI · IPv6 · VLAN · HTTP</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:63%; background:#06B6D4"></div></div>
+      <div class="freq-label"><span>تكرار عالٍ</span><span>~85 سؤال</span></div>
+      <div class="topic-desc">
+        يتناول نموذج OSI بطبقاته السبع، وبروتوكولات TCP/IP وHTTPS وDNS، وتقنيات VPN وVLAN، والفرق بين IPv4 وIPv6، وأمن الشبكات.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#10B981">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#10B981">💾</div>
+        <div>
+          <div class="topic-name">البيانات والتخزين والسحابة</div>
+          <div class="topic-sub">Cloud · Backup · تشفير · ضغط</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:63%; background:#10B981"></div></div>
+      <div class="freq-label"><span>تكرار عالٍ</span><span>~85 سؤال</span></div>
+      <div class="topic-desc">
+        يشمل أنواع التخزين (SSD, HDD, Cloud)، وأنظمة النسخ الاحتياطي، والحوسبة السحابية بنماذجها (IaaS, PaaS, SaaS)، والحوسبة الضبابية (Fog Computing)، وإدارة الملفات.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#F59E0B">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#F59E0B">🖥️</div>
+        <div>
+          <div class="topic-name">مكونات الحاسوب (العتاد)</div>
+          <div class="topic-sub">CPU · RAM · GPU · اللوحة الأم</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:32%; background:#F59E0B"></div></div>
+      <div class="freq-label"><span>تكرار متوسط</span><span>~43 سؤال</span></div>
+      <div class="topic-desc">
+        أسئلة عن المعالج وسرعة التردد وعدد الأنوية، وذاكرة الوصول العشوائي وزمن التأخير (CAS Latency)، وبطاقات الرسوميات (VRAM)، وأنواع الحواسيب من الشخصية إلى الفائقة.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#6366F1">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#6366F1">🗄️</div>
+        <div>
+          <div class="topic-name">قواعد البيانات</div>
+          <div class="topic-sub">SQL · تطبيع · ACID · SQL Injection</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:12%; background:#6366F1"></div></div>
+      <div class="freq-label"><span>تكرار معتدل</span><span>~16 سؤال</span></div>
+      <div class="topic-desc">
+        يغطي تطبيع قواعد البيانات (1NF→3NF)، وخصائص ACID للمعاملات، وهجمات SQL Injection وكيفية الوقاية منها، وأنواع العلاقات بين الجداول.
+      </div>
+    </div>
+
+    <div class="topic-card" style="--accent:#EC4899">
+      <div class="topic-header">
+        <div class="topic-icon" style="--accent:#EC4899">⚙️</div>
+        <div>
+          <div class="topic-name">نظام التشغيل</div>
+          <div class="topic-sub">جدولة العمليات · إدارة الذاكرة · Thread</div>
+        </div>
+      </div>
+      <div class="freq-bar"><div class="freq-fill" style="width:11%; background:#EC4899"></div></div>
+      <div class="freq-label"><span>تكرار معتدل</span><span>~15 سؤال</span></div>
+      <div class="topic-desc">
+        يتناول خوارزميات جدولة المعالج (SJF وRound Robin)، وإدارة الذاكرة بالتجزئة والصفحات، والفرق بين العمليات والخيوط (Threads vs Processes).
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DEEP DIVES -->
+  <h2 class="section-title">📖 شرح تعليمي مبسّط للمواضيع الرئيسية</h2>
+
+  <!-- 1. Security -->
+  <div class="deep-dive" style="--acc2: #EF4444">
+    <div class="deep-dive-header" onclick="toggle(this)">
+      <span class="icon">🛡️</span>
+      <h3>الأمن السيبراني والبرمجيات الخبيثة</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="deep-dive-body open">
+      <div class="concept-grid">
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> الفيروس (Virus)</div>
+          <div class="def">برنامج خبيث يُلصق نفسه بملفات أخرى وينتشر معها. يحتاج إلى تدخل المستخدم لتشغيله (مثل فتح ملف مصاب).</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> الدودة (Worm)</div>
+          <div class="def">تنتشر تلقائياً عبر الشبكة دون تدخل المستخدم، وتستنزف موارد الشبكة. الفرق الجوهري عن الفيروس: لا تحتاج ملفاً مضيفاً.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> حصان طروادة (Trojan)</div>
+          <div class="def">يتنكر كبرنامج مشروع وينفذ مهاماً ضارة خفية. لا يتكاثر ذاتياً ولكنه خطير جداً لفتحه باباً خلفياً للمهاجم.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> برنامج الفدية (Ransomware)</div>
+          <div class="def">يُشفّر ملفات الضحية ويطلب فدية مالية مقابل مفتاح فك التشفير. الحل الأفضل: نسخ احتياطي منتظم في موقع منفصل.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> برنامج التجسس (Spyware)</div>
+          <div class="def">يعمل خفيةً لجمع بيانات المستخدم مثل كلمات المرور وعادات التصفح وإرسالها للمهاجم.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> الهندسة الاجتماعية</div>
+          <div class="def">خداع المستخدم نفسياً لكشف معلومات سرية أو النقر على روابط خبيثة. الحماية: التوعية وعدم فتح المرفقات المشبوهة.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> جدار الحماية (Firewall)</div>
+          <div class="def">يراقب حركة البيانات الداخلة والخارجة ويحجب الاتصالات غير المصرح بها بناءً على قواعد مُحددة مسبقاً.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> التحليل الاستدلالي (Heuristic)</div>
+          <div class="def">آلية كشف الفيروسات الجديدة غير المعروفة بتحليل سلوك البرنامج بدلاً من مقارنته بتوقيعات معروفة فقط.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#EF4444"></span> الـ Sandboxing</div>
+          <div class="def">بيئة افتراضية معزولة لتشغيل البرامج المشبوهة وتحليلها دون المساس بالنظام الحقيقي.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Networks -->
+  <div class="deep-dive" style="--acc2: #06B6D4">
+    <div class="deep-dive-header" onclick="toggle(this)">
+      <span class="icon">🌐</span>
+      <h3>الشبكات والإنترنت والبروتوكولات</h3>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="deep-dive-body open">
+      <div class="concept-grid">
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> نموذج OSI (7 طبقات)</div>
+          <div class="def">يقسم الاتصال إلى 7 طبقات: المادية → ربط البيانات → الشبكة → النقل → الجلسة → العرض → التطبيقات. كل طبقة لها مهمة محددة.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> TCP مقابل IP</div>
+          <div class="def">IP يحدد العنوان (وجهة الحزمة). TCP يضمن وصول البيانات بشكل كامل ومرتب. معاً يُشكّلان أساس الإنترنت.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> HTTPS مقابل HTTP</div>
+          <div class="def">HTTPS يضيف طبقة تشفير SSL/TLS فوق HTTP لحماية البيانات أثناء النقل. ضروري للمواقع التي تتعامل مع بيانات حساسة.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> IPv6 مقابل IPv4</div>
+          <div class="def">IPv6 يستخدم 128 بت (مقابل 32 في IPv4) مما يوفر عناوين لا حصر لها، ويدعم IPsec للأمان المدمج.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> VLAN</div>
+          <div class="def">تقسيم الشبكة الفيزيائية الواحدة لشبكات منطقية معزولة (مثل شبكة إدارة، شبكة طلاب). يحسن الأمان والأداء.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> بروتوكول ARP</div>
+          <div class="def">يربط عنوان IP بعنوان MAC الفيزيائي للجهاز. يمكن استغلاله في هجمات Man-in-the-Middle بإرسال رسائل ARP مزيفة.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> DNS</div>
+          <div class="def">نظام أسماء النطاقات: يترجم أسماء المواقع (google.com) إلى عناوين IP رقمية. يُعدّ دليل هاتف الإنترنت.</div>
+        </div>
+        <div class="concept-chip">
+          <div class="term"><span class="dot" style="background:#06B6D4"></span> VPN</div>
+          <div class="def">شبكة خاصة افتراضية تُنشئ نفقاً مشفراً عبر الإنترنت لضمان خصوصية الاتصال والوصول الآمن للشبكات البعيدة.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Programming -->
+  <div class="deep-dive" style="--ac
