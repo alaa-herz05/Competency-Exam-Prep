@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كفاءة — المركز التعليمي</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Cairo:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    :root {
+      --black: #060608;
+      --deep: #0d0d12;
+      --surface: #111118;
+      --card: #16161f;
+      --card2: #1c1c28;
+      --border: rgba(220, 30, 60, .2);
+      --border2: rgba(255, 255, 255, .06);
+      --red: #dc1e3c;
+      --red2: #ff2244;
+      --red-glow: rgba(220, 30, 60, .25);
+      --red-dim: rgba(220, 30, 60, .08);
+      --gold: #ffc940;
+      --gold-dim: rgba(255, 201, 64, .08);
+      --green: #00e87a;
+      --blue: #00c8ff;
+      --purple: #b48aff;
+      --text: #e8eaf0;
+      --muted: #6b7280;
+      --muted2: #9ca3af;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Cairo, Inter, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(220, 30, 60, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(220, 30, 60, .04) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .bg-orb { position: absolute; border-radius: 50%; filter: blur(90px); animation: orbPulse 8s ease-in-out infinite; }
+    .orb1 { width: 600px; height: 600px; top: -200px; right: -100px; background: radial-gradient(circle, rgba(220, 30, 60, .09), transparent 70%); animation-delay: 0s; }
+    .orb2 { width: 400px; height: 400px; bottom: -100px; left: -80px; background: radial-gradient(circle, rgba(180, 138, 255, .06), transparent 70%); animation-delay: -4s; }
+    .orb3 { width: 300px; height: 300px; top: 50%; left: 40%; background: radial-gradient(circle, rgba(0, 200, 255, .04), transparent 70%); animation-delay: -2s; }
+    @keyframes orbPulse { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.15) } }
+
+    .page-wrap { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 20px 60px; }
+
+    .hero {
+      text-align: center; padding: 70px 24px 56px; position: relative;
+      border-bottom: 1px solid var(--border); margin-bottom: 56px; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 75% 70% at 50% 0%, rgba(220, 30, 60, .12), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--red2);
+      font-family: Orbitron, monospace; font-size: 10px; font-weight: 700; letter-spacing: 3px;
+      padding: 6px 22px; border-radius: 20px; background: var(--red-dim); margin-bottom: 24px;
+      text-transform: uppercase; box-shadow: 0 0 24px var(--red-glow);
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    @keyframes badgePulse { 0%, 100% { box-shadow: 0 0 24px var(--red-glow) } 50% { box-shadow: 0 0 44px rgba(220, 30, 60, .4) } }
+    .hero-logo { font-family: Orbitron, monospace; font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 900; color: #fff; letter-spacing: -1px; margin-bottom: 6px; text-shadow: 0 0 50px rgba(220, 30, 60, .4); line-height: 1.1; }
+    .hero-logo span { color: var(--red2); }
+    .hero-ar { font-family: Cairo, sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--gold); margin-bottom: 18px; text-shadow: 0 0 24px rgba(255, 201, 64, .35); letter-spacing: .5px; }
+    .hero-desc { font-size: 14.5px; color: var(--muted2); max-width: 580px; margin: 0 auto 32px; line-height: 1.9; direction: rtl; }
+    .hero-divider { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 0; }
+    .hero-divider span { display: block; height: 1px; width: 80px; background: linear-gradient(90deg, transparent, var(--border)); }
+    .hero-divider span:last-child { background: linear-gradient(270deg, transparent, var(--border)); }
+    .hero-divider i { color: var(--red); font-size: 18px; animation: spin 8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg) } }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 56px; }
+    .stat-box {
+      background: var(--card); border: 1px solid var(--border2); border-radius: 16px; padding: 22px 16px;
+      text-align: center; position: relative; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .4), 0 1px 0 rgba(255, 255, 255, .04) inset;
+      transition: transform .25s, border-color .25s;
+    }
+    .stat-box:hover { transform: translateY(-3px); border-color: var(--border); }
+    .stat-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .stat-box:nth-child(1)::before { background: var(--red); }
+    .stat-box:nth-child(2)::before { background: var(--gold); }
+    .stat-box:nth-child(3)::before { background: var(--green); }
+    .stat-icon { font-size: 1.9rem; margin-bottom: 8px; display: block; }
+    .stat-num { font-family: Orbitron, monospace; font-size: 1.6rem; font-weight: 900; display: block; line-height: 1; margin-bottom: 6px; }
+    .stat-box:nth-child(1) .stat-num { color: var(--red2); }
+    .stat-box:nth-child(2) .stat-num { color: var(--gold); }
+    .stat-box:nth-child(3) .stat-num { color: var(--green); }
+    .stat-lbl { font-size: 12px; color: var(--muted); font-family: Cairo, sans-serif; }
+
+    .sec-title { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+    .sec-title-line { flex: 1; height: 1px; background: var(--border); }
+    .sec-title-text { font-family: Orbitron, monospace; font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: 3px; text-transform: uppercase; white-space: nowrap; }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 24px; margin-bottom: 60px; }
+
+    .resource-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 22px; overflow: hidden;
+      position: relative; transition: transform .3s, box-shadow .3s, border-color .3s;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .5), 0 1px 0 rgba(255, 255, 255, .04) inset;
+      animation: cardIn .4s ease both;
+    }
+    @keyframes cardIn { from { opacity: 0; transform: translateY(20px) } to { opacity: 1; transform: translateY(0) } }
+    .resource-card:nth-child(2) { animation-delay: .12s; }
+    .resource-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0, 0, 0, .6), 0 0 40px var(--red-glow); border-color: var(--red2); }
+
+    .card-glow { position: absolute; top: -80px; right: -80px; width: 220px; height: 220px; border-radius: 50%; filter: blur(60px); pointer-events: none; transition: opacity .3s; }
+    .card-1 .card-glow { background: radial-gradient(circle, rgba(220, 30, 60, .15), transparent 70%); }
+    .card-2 .card-glow { background: radial-gradient(circle, rgba(255, 201, 64, .12), transparent 70%); }
+
+    .card-top { padding: 28px 28px 0; position: relative; }
+    .card-tag { display: inline-flex; align-items: center; gap: 7px; font-family: Orbitron, monospace; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 14px; margin-bottom: 18px; }
+    .card-1 .card-tag { background: var(--red-dim); color: var(--red2); border: 1px solid var(--border); }
+    .card-2 .card-tag { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(255, 201, 64, .2); }
+    .card-tag-dot { width: 6px; height: 6px; border-radius: 50%; animation: tagBlink 2s ease-in-out infinite; }
+    .card-1 .card-tag-dot { background: var(--red2); }
+    .card-2 .card-tag-dot { background: var(--gold); }
+    @keyframes tagBlink { 0%, 100% { opacity: 1 } 50% { opacity: .3 } }
+
+    .card-icon-wrap { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .card-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .card-1 .card-icon { background: var(--red-dim); border: 1px solid var(--border); box-shadow: 0 0 20px var(--red-glow); }
+    .card-2 .card-icon { background: var(--gold-dim); border: 1px solid rgba(255, 201, 64, .2); box-shadow: 0 0 20px rgba(255, 201, 64, .15); }
+    .card-title-wrap { flex: 1; }
+    .card-title { font-family: Cairo, sans-serif; font-size: 1.2rem; font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 3px; direction: rtl; }
+    .card-en-title { font-family: Orbitron, monospace; font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .card-1 .card-en-title { color: var(--red); }
+    .card-2 .card-en-title { color: var(--gold); }
+
+    .card-body { padding: 0 28px 24px; }
+    .card-desc { font-size: 13.5px; color: var(--muted2); line-height: 1.85; margin-bottom: 20px; direction: rtl; }
+    .card-features { list-style: none; margin-bottom: 24px; }
+    .card-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text); padding: 7px 0; border-bottom: 1px solid var(--border2); direction: rtl; }
+    .card-features li:last-child { border-bottom: none; }
+    .feat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .card-1 .feat-dot { background: var(--red2); box-shadow: 0 0 6px var(--red-glow); }
+    .card-2 .feat-dot { background: var(--gold); box-shadow: 0 0 6px rgba(255, 201, 64, .3); }
+
+    .card-cta {
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+      padding: 14px 24px; border-radius: 12px; font-family: Cairo, sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: .5px; border: none; transition: .25s; cursor: pointer; position: relative; overflow: hidden;
+    }
+    .card-cta::before { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0); transition: .2s; }
+    .card-cta:hover::before { background: rgba(255, 255, 255, .05); }
+    .card-1 .card-cta { background: linear-gradient(135deg, var(--red), #a0001b); color: #fff; box-shadow: 0 4px 20px rgba(220, 30, 60, .4); }
+    .card-1 .card-cta:hover { box-shadow: 0 6px 30px rgba(220, 30, 60, .6); transform: translateY(-1px); }
+    .card-2 .card-cta { background: linear-gradient(135deg, var(--gold), #c49000); color: var(--black); box-shadow: 0 4px 20px rgba(255, 201, 64, .3); }
+    .card-2 .card-cta:hover { box-shadow: 0 6px 30px rgba(255, 201, 64, .5); transform: translateY(-1px); }
+    .cta-arrow { font-size: 18px; transition: transform .25s; }
+    .card-cta:hover .cta-arrow { transform: translateX(-4px); }
+
+    /* ══ EXAM CARDS ══ */
+    .exam-section { margin-top: -22px; margin-bottom: 60px; }
+
+    .exam-card-cs {
+      --exam-main: #4fd8ff; --exam-main2: #86efff;
+      --exam-dim: rgba(79, 216, 255, .09); --exam-border: rgba(79, 216, 255, .26); --exam-glow: rgba(79, 216, 255, .32);
+    }
+    .exam-card-edu {
+      --exam-main: #d7dce2; --exam-main2: #f1f3f5;
+      --exam-dim: rgba(210, 214, 220, .08); --exam-border: rgba(210, 214, 220, .24); --exam-glow: rgba(210, 214, 220, .22);
+    }
+
+    /* ══ NEW: الكفاءات التربوية للأستاذ حسين ══ */
+    .exam-card-husain {
+      --exam-main: #38bdf8;
+      --exam-main2: #bae6fd;
+      --exam-dim: rgba(56, 189, 248, .10);
+      --exam-border: rgba(56, 189, 248, .30);
+      --exam-glow: rgba(56, 189, 248, .35);
+    }
+
+    .resource-card.exam-card-cs,
+    .resource-card.exam-card-edu,
+    .resource-card.exam-card-husain {
+      border-color: var(--exam-border);
+      background:
+        radial-gradient(circle at 80% 0%, var(--exam-dim), transparent 40%),
+        linear-gradient(145deg, rgba(7, 12, 18, .96), rgba(15, 17, 22, .94));
+    }
+    .resource-card.exam-card-cs:hover,
+    .resource-card.exam-card-edu:hover,
+    .resource-card.exam-card-husain:hover {
+      border-color: var(--exam-main);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .62), 0 0 42px var(--exam-glow);
+    }
+    .exam-card-cs .card-glow,
+    .exam-card-edu .card-glow,
+    .exam-card-husain .card-glow {
+      background: radial-gradient(circle, var(--exam-glow), transparent 70%);
+    }
+    .exam-card-cs .card-tag,
+    .exam-card-edu .card-tag,
+    .exam-card-husain .card-tag {
+      background: var(--exam-dim); color: var(--exam-main2); border: 1px solid var(--exam-border);
+    }
+    .exam-card-cs .card-tag-dot, .exam-card-edu .card-tag-dot, .exam-card-husain .card-tag-dot,
+    .exam-card-cs .feat-dot, .exam-card-edu .feat-dot, .exam-card-husain .feat-dot {
+      background: var(--exam-main); box-shadow: 0 0 10px var(--exam-glow);
+    }
+    .exam-card-cs .card-icon, .exam-card-edu .card-icon, .exam-card-husain .card-icon {
+      background: var(--exam-dim); border: 1px solid var(--exam-border); box-shadow: 0 0 22px var(--exam-glow);
+    }
+    .exam-card-cs .card-en-title, .exam-card-edu .card-en-title, .exam-card-husain .card-en-title {
+      color: var(--exam-main);
+    }
+    .exam-card-cs .card-cta, .exam-card-edu .card-cta, .exam-card-husain .card-cta {
+      background: linear-gradient(135deg, var(--exam-main), var(--exam-main2));
+      color: #05070a; box-shadow: 0 4px 22px var(--exam-glow);
+    }
+    .exam-card-cs .card-cta:hover, .exam-card-edu .card-cta:hover, .exam-card-husain .card-cta:hover {
+      box-shadow: 0 7px 34px var(--exam-glow); transform: translateY(-1px);
+    }
+
+    /* badge pulse for husain card */
+    .exam-card-husain .card-tag-dot {
+      animation: tagBlink 1.5s ease-in-out infinite;
+    }
+
+    /* ══ CS SUMMARY CARD — أبيض وأزرق سماوي ══ */
+    .exam-card-cs-summary {
+      --cs-main: #38bdf8;
+      --cs-main2: #0ea5e9;
+      --cs-light: #e0f4ff;
+      --cs-border: rgba(56, 189, 248, .35);
+      --cs-glow: rgba(56, 189, 248, .28);
+      --cs-dim: rgba(56, 189, 248, .07);
+      background: linear-gradient(145deg, #f0f8ff, #e8f4fb) !important;
+      border: 1.5px solid var(--cs-border) !important;
+      box-shadow: 0 8px 40px rgba(56, 189, 248, .18), 0 2px 0 rgba(255,255,255,.7) inset !important;
+    }
+    .exam-card-cs-summary .card-title { color: #0c2a3d !important; }
+    .exam-card-cs-summary .card-desc { color: #3a6075 !important; }
+    .exam-card-cs-summary .card-features li { color: #1a4a5e !important; border-bottom-color: rgba(56,189,248,.18) !important; }
+    .exam-card-cs-summary .card-glow { background: radial-gradient(circle, rgba(56,189,248,.22), transparent 70%); }
+    .exam-card-cs-summary .card-tag { background: rgba(56,189,248,.15); color: var(--cs-main2); border: 1px solid var(--cs-border); }
+    .exam-card-cs-summary .card-tag-dot,
+    .exam-card-cs-summary .feat-dot { background: var(--cs-main2); box-shadow: 0 0 8px var(--cs-glow); }
+    .exam-card-cs-summary .card-icon { background: rgba(56,189,248,.15); border: 1px solid var(--cs-border); box-shadow: 0 0 20px var(--cs-glow); }
+    .exam-card-cs-summary .card-en-title { color: var(--cs-main2) !important; }
+    .exam-card-cs-summary .card-cta { background: linear-gradient(135deg, #0ea5e9, #38bdf8); color: #fff; box-shadow: 0 4px 22px var(--cs-glow); }
+    .exam-card-cs-summary .card-cta:hover { box-shadow: 0 7px 34px var(--cs-glow); transform: translateY(-1px); }
+    .exam-card-cs-summary:hover { border-color: var(--cs-main2) !important; box-shadow: 0 20px 60px rgba(56,189,248,.25), 0 0 42px var(--cs-glow) !important; transform: translateY(-6px); }
+
+    /* ══ GOLDEN COMPUTER GUIDE CARD ══ */
+    .exam-card-golden {
+      --gc-main: #f59e0b;
+      --gc-main2: #fbbf24;
+      --gc-border: rgba(245,158,11,.35);
+      --gc-glow: rgba(245,158,11,.30);
+      --gc-dim: rgba(245,158,11,.09);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(245,158,11,.10), transparent 40%),
+        linear-gradient(145deg, rgba(10,8,2,.97), rgba(20,16,4,.95)) !important;
+      border: 1.5px solid var(--gc-border) !important;
+    }
+    .exam-card-golden .card-glow { background: radial-gradient(circle, var(--gc-glow), transparent 70%); }
+    .exam-card-golden .card-tag { background: rgba(245,158,11,.12); color: var(--gc-main2); border: 1px solid var(--gc-border); }
+    .exam-card-golden .card-tag-dot,
+    .exam-card-golden .feat-dot { background: var(--gc-main2); box-shadow: 0 0 10px var(--gc-glow); }
+    .exam-card-golden .card-icon { background: rgba(245,158,11,.12); border: 1px solid var(--gc-border); box-shadow: 0 0 22px var(--gc-glow); }
+    .exam-card-golden .card-en-title { color: var(--gc-main2) !important; }
+    .exam-card-golden .card-cta { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: #1a0e00; box-shadow: 0 4px 22px var(--gc-glow); }
+    .exam-card-golden .card-cta:hover { box-shadow: 0 7px 34px var(--gc-glow); transform: translateY(-1px); }
+    .exam-card-golden:hover { border-color: var(--gc-main2) !important; box-shadow: 0 20px 60px rgba(0,0,0,.62), 0 0 42px var(--gc-glow) !important; transform: translateY(-6px); }
+
+    .how-section {
+      background: var(--card); border: 1px solid var(--border2); border-radius: 22px;
+      padding: 36px 32px; margin-bottom: 60px; position: relative; overflow: hidden;
+    }
+    .how-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--red), var(--gold), transparent); }
+    .how-title { font-family: Cairo, sans-serif; font-size: 1.1rem; font-weight: 900; color: #fff; margin-bottom: 24px; direction: rtl; display: flex; align-items: center; gap: 10px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .step-item { text-align: center; padding: 20px 12px; background: var(--card2); border-radius: 14px; border: 1px solid var(--border2); transition: .25s; }
+    .step-item:hover { border-color: var(--border); transform: translateY(-2px); }
+    .step-num { font-family: Orbitron, monospace; font-size: 1.4rem; font-weight: 900; color: var(--red2); display: block; margin-bottom: 10px; text-shadow: 0 0 14px var(--red-glow); }
+    .step-icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+    .step-text { font-size: 12.5px; color: var(--muted2); font-family: Cairo, sans-serif; direction: rtl; line-height: 1.6; }
+
+    .topics-section { margin-bottom: 60px; }
+    .topics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+    .topic-pill { background: var(--card); border: 1px solid var(--border2); border-radius: 12px; padding: 14px 16px; text-align: center; transition: .25s; cursor: default; }
+    .topic-pill:hover { border-color: var(--red); background: var(--red-dim); }
+    .topic-pill-icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+    .topic-pill-name { font-size: 12.5px; color: var(--text); font-family: Cairo, sans-serif; font-weight: 700; }
+
+    footer { border-top: 1px solid var(--border); padding: 40px 24px 32px; text-align: center; position: relative; }
+    footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 1px; background: linear-gradient(90deg, transparent, var(--red), transparent); }
+    .footer-logo { font-family: Orbitron, monospace; font-size: 1.1rem; font-weight: 900; color: var(--red2); letter-spacing: 2px; margin-bottom: 6px; }
+    .footer-name { font-family: Cairo, sans-serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 18px; }
+    .footer-info { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px; margin-bottom: 18px; }
+    .footer-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted2); font-family: Cairo, sans-serif; background: var(--card); border: 1px solid var(--border2); padding: 8px 18px; border-radius: 50px; transition: .2s; }
+    .footer-item:hover { border-color: var(--border); color: var(--text); }
+    .footer-item-icon { font-size: 16px; }
+    .footer-copy { font-size: 11.5px; color: var(--muted); font-family: Orbitron, monospace; letter-spacing: 1.5px; }
+    .footer-copy span { color: var(--red); }
+
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .steps-grid { grid-template-columns: 1fr; }
+      .hero-logo { font-size: 1.8rem; }
+      .how-section { padding: 24px 18px; }
+      .footer-info { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-layer">
+    <div class="bg-grid"></div>
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+  </div>
+
+  <div class="page-wrap">
+
+    <header class="hero">
+      <div class="hero-badge"><span>●</span> Competency EXAM PREP <span>●</span></div>
+      <h1 class="hero-logo">Competency</h1>
+      <div class="hero-ar">مركز التحضير لامتحان الكفاءة</div>
+      <p class="hero-desc">
+        منصة متكاملة للتحضير لامتحان كفاءة المعلمين — تضم دليلاً شاملاً لجميع المحاور ومصطلحات الامتحان، إلى جانب بنك
+        أسئلة تفاعلي مع شرح وافٍ لكل إجابة. كل ما تحتاجه في مكان واحد.
+      </p>
+      <div class="hero-divider"><span></span><i>✦</i><span></span></div>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-box"><span class="stat-icon">📚</span><span class="stat-num">+100</span><span class="stat-lbl">سؤال تدريبي</span></div>
+      <div class="stat-box"><span class="stat-icon">🗂️</span><span class="stat-num">10+</span><span class="stat-lbl">محاور ومواضيع</span></div>
+      <div class="stat-box"><span class="stat-icon">🎯</span><span class="stat-num">100%</span><span class="stat-lbl">مجاني وشامل</span></div>
+    </div>
+
+    <div class="sec-title">
+      <div class="sec-title-line"></div>
+      <div class="sec-title-text">المواد التعليمية</div>
+      <div class="sec-title-line"></div>
+    </div>
+
+    <div class="cards-grid">
+      <div class="resource-card card-1">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag"><span class="card-tag-dot"></span>INTERACTIVE QUIZ</div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">🧠</div>
+            <div class="card-title-wrap">
+              <div class="card-title">بنك الأسئلة التفاعلي</div>
+              <div class="card-en-title">Practice Questions</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">أكثر من 100 سؤال تدريبي مُصنَّف حسب المحاور مع خلط تلقائي للخيارات وشرح عربي مفصّل لكل إجابة.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>شبكات وهندسة برمجيات وتصميم ويب</li>
+            <li><span class="feat-dot"></span>لغات برمجة</li>
+            <li><span class="feat-dot"></span>قواعد عربية وإنجليزية</li>
+            <li><span class="feat-dot"></span>تقنية وحاسوب وذكاء اصطناعي</li>
+            <li><span class="feat-dot"></span>لوحة تقييم فورية بنسبة النجاح</li>
+          </ul>
+          <a href="quiz.html" class="card-cta"><span class="cta-arrow">←</span>ابدأ الاختبار التدريبي</a>
+        </div>
+      </div>
+
+      <div class="resource-card card-2">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag"><span class="card-tag-dot"></span>STUDY GUIDE</div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">📖</div>
+            <div class="card-title-wrap">
+              <div class="card-title">دليل الدراسة الشامل</div>
+              <div class="card-en-title">Complete Exam Guide</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">مرجع شامل ومنظَّم لجميع محاور امتحان الكفايات — يشمل المصطلحات والتعريفات ونماذج الأسئلة والشروحات المعمّقة.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>المصطلحات والمفاهيم الأساسية</li>
+            <li><span class="feat-dot"></span>نظريات التعلم</li>
+            <li><span class="feat-dot"></span>مهارات التفكير الناقد والإبداعي</li>
+            <li><span class="feat-dot"></span>اللغة العربية والإنجليزية</li>
+            <li><span class="feat-dot"></span>تقنية المعلومات والبرمجة</li>
+          </ul>
+          <a href="competency_exam_guide.html" class="card-cta"><span class="cta-arrow">←</span>افتح دليل الدراسة</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ INTERACTIVE EXAMS ══════ -->
+    <div class="sec-title exam-section">
+      <div class="sec-title-line"></div>
+      <div class="sec-title-text">الامتحانات التفاعلية</div>
+      <div class="sec-title-line"></div>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card 3: CS -->
+      <div class="resource-card exam-card-cs">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag"><span class="card-tag-dot"></span>COMPUTER SCIENCE EXAM</div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">💻</div>
+            <div class="card-title-wrap">
+              <div class="card-title">امتحان الحاسوب</div>
+              <div class="card-en-title">CS Interactive Exam</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">صفحة أسئلة تفاعلية للحاسوب بثيم أزرق سماوي، تعرض الإجابة الصحيحة فورًا مع شرح مبسط وسكور مباشر.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>1712 سؤال حاسوب تفاعلي</li>
+            <li><span class="feat-dot"></span>تصحيح فوري مع إظهار الإجابة الصحيحة</li>
+            <li><span class="feat-dot"></span>شرح تحت كل سؤال بعد الإجابة</li>
+            <li><span class="feat-dot"></span>فلترة للأسئلة الصحيحة والخاطئة وغير المجابة</li>
+          </ul>
+          <a href="CS1.html" class="card-cta"><span class="cta-arrow">←</span>افتح امتحان الحاسوب</a>
+        </div>
+      </div>
+
+      <!-- Card 4: Educational -->
+      <div class="resource-card exam-card-edu">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag"><span class="card-tag-dot"></span>EDUCATIONAL COMPETENCIES</div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">🎓</div>
+            <div class="card-title-wrap">
+              <div class="card-title">امتحان الكفاءات التربوية</div>
+              <div class="card-en-title">Educational Competencies Exam</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">صفحة امتحان الكفاءات التربوية بثيم أسود ورمادي، تحتوي على أسئلة تفاعلية مع تصحيح مباشر وسكور كامل.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>690 سؤال كفاءات تربوية</li>
+            <li><span class="feat-dot"></span>إظهار الصح والخطأ مباشرة</li>
+            <li><span class="feat-dot"></span>عرض الإجابة الصحيحة مع الشرح</li>
+            <li><span class="feat-dot"></span>بحث وتصفية حسب حالة السؤال</li>
+          </ul>
+          <a href="Educational_competencies.html" class="card-cta"><span class="cta-arrow">←</span>افتح امتحان الكفاءات التربوية</a>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           Card 5: نظام الكفاءات — حسين الشلول  (NEW)
+      ══════════════════════════════════════ -->
+      <div class="resource-card exam-card-husain" style="animation-delay:.24s">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag">
+            <span class="card-tag-dot"></span>
+            PEDAGOGICAL COMPETENCIES — 2026
+          </div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">🏫</div>
+            <div class="card-title-wrap">
+              <div class="card-title">نظام الكفاءات التربوية — 2026</div>
+              <div class="card-en-title">Hussein Al-Shalloul • Interactive System</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">
+            نظام امتحان تفاعلي متكامل مبني على دوسية أ. حسين إبراهيم الشلول — يضم أسئلة مصنّفة بثمانية محاور تربوية مع شرح فوري لكل إجابة صحيحة أو خاطئة.
+          </p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>55+ سؤال موزّع على 8 محاور تربوية</li>
+            <li><span class="feat-dot"></span>شرح مفصّل فوري عند كل إجابة</li>
+            <li><span class="feat-dot"></span>تقويم البنائي · التشخيصي · الختامي · الذاتي</li>
+            <li><span class="feat-dot"></span>نظريات التعلم · بلوم · أخلاقيات · التمايز · الصف المقلوب</li>
+            <li><span class="feat-dot"></span>نتائج تفصيلية ومراجعة كاملة في النهاية</li>
+          </ul>
+          <a href="interactive.html" class="card-cta">
+            <span class="cta-arrow">←</span>
+            افتح نظام الكفاءات التربوية
+          </a>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           Card 6: أهم الأفكار في ملف CS والأسئلة الأكثر تكراراً
+      ══════════════════════════════════════ -->
+      <div class="resource-card exam-card-cs-summary" style="animation-delay:.30s">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag">
+            <span class="card-tag-dot"></span>
+            CS KEY IDEAS & REPEATED QUESTIONS
+          </div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">📌</div>
+            <div class="card-title-wrap">
+              <div class="card-title">أهم الأفكار في ملف CS والأسئلة الأكثر تكراراً</div>
+              <div class="card-en-title">CS Summary — Top Concepts & Frequent Q's</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">ملخص مركّز لأبرز الأفكار والمفاهيم في ملف الحاسوب، مع تجميع للأسئلة الأكثر تكراراً في الامتحانات السابقة.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>أهم المفاهيم والنقاط المتوقعة</li>
+            <li><span class="feat-dot"></span>الأسئلة الأكثر تكراراً في CS</li>
+            <li><span class="feat-dot"></span>مراجعة سريعة قبل الامتحان</li>
+            <li><span class="feat-dot"></span>ثيم أبيض وأزرق سماوي مريح للقراءة</li>
+          </ul>
+          <a href="cs_summary.html" class="card-cta"><span class="cta-arrow">←</span>افتح ملخص CS</a>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           Card 7: Golden Computer Guide
+      ══════════════════════════════════════ -->
+      <div class="resource-card exam-card-golden" style="animation-delay:.36s">
+        <div class="card-glow"></div>
+        <div class="card-top">
+          <div class="card-tag">
+            <span class="card-tag-dot"></span>
+            GOLDEN COMPUTER GUIDE
+          </div>
+          <div class="card-icon-wrap">
+            <div class="card-icon">🏆</div>
+            <div class="card-title-wrap">
+              <div class="card-title">Golden Computer Guide</div>
+              <div class="card-en-title">Ultimate CS Exam Reference</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">ملخص شامل لجميع أفكار امتحان الحاسوب — مرجع ذهبي متكامل يجمع كل ما تحتاجه للنجاح في امتحان الحاسوب في مكان واحد.</p>
+          <ul class="card-features">
+            <li><span class="feat-dot"></span>تغطية شاملة لجميع محاور الحاسوب</li>
+            <li><span class="feat-dot"></span>مفاهيم أساسية بشرح مبسّط وواضح</li>
+            <li><span class="feat-dot"></span>مرجع ذهبي للمراجعة النهائية</li>
+            <li><span class="feat-dot"></span>مصمّم خصيصاً لامتحان الحاسوب</li>
+          </ul>
+          <a href="GC_guide.html" class="card-cta"><span class="cta-arrow">←</span>افتح الدليل الذهبي</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════ HOW TO USE ══════ -->
+    <div class="how-section">
+      <div class="how-title">🗺️ كيف تستخدم هذه المنصة؟</div>
+      <div class="steps-grid">
+        <div class="step-item">
+          <span class="step-num">01</span><span class="step-icon">📖</span>
+          <div class="step-text">ابدأ بقراءة دليل الدراسة الشامل لتفهم المحاور والمفاهيم الأساسية</div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">02</span><span class="step-icon">🧠</span>
+          <div class="step-text">انتقل لبنك الأسئلة وتدرّب على كل محور واقرأ شرح كل إجابة بعناية</div>
+        </div>
+        <div class="step-item">
+          <span class="step-num">03</span><span class="step-icon">🏆</span>
+          <div class="step-text">راجع نقاط ضعفك، أعد التدريب وتابع نسبة نجاحك حتى تصل لـ 90%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ TOPICS ══════ -->
+    <div class="topics-section">
+      <div class="sec-title">
+        <div class="sec-title-line"></div>
+        <div class="sec-title-text">المحاور المشمولة</div>
+        <div class="sec-title-line"></div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-pill"><span class="topic-pill-icon">🔤</span><div class="topic-pill-name">اللغة العربية</div></div>
+        <div class="topic-pill"><span class="topic-pill-icon">🇬🇧</span><div class="topic-pill-name">اللغة الإنجليزية</div></div>
+        <div class="topic-pill"><span class="topic-pill-icon">💻</span><div class="topic-pill-name">علم حاسوب</div></div>
+        <div class="topic-pill"><span class="topic-pill-icon">🤖</span><div class="topic-pill-name">الذكاء الاصطناعي</div></div>
+        <div class="topic-pill"><span class="topic-pill-icon">👨‍💻</span><div class="topic-pill-name">لغات البرمجة</div></div>
+        <div class="topic-pill"><span class="topic-pill-icon">🎓</span><div class="topic-pill-name">علوم تربوية</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-logo">Competency</div>
+    <div class="footer-name">إعداد: علاء حرزالله</div>
+    <div class="footer-info">
+      <div class="footer-col">
+        <div class="contact-cards">
+          <a href="https://www.instagram.com/alaaherzallah05" target="_blank" class="contact-card instagram">
+            <div class="c-icon"><i class="fab fa-instagram"></i></div>
+          </a>
+          <a href="https://wa.me/962775725298" target="_blank" class="contact-card whatsapp">
+            <div class="c-icon"><i class="fab fa-whatsapp"></i></div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-item"><span class="footer-item-icon">👤</span><span>Ataa Herzallah</span></div>
+    </div>
+    <div class="footer-copy">© 2026 <span>Alaa Herzallah</span> — ALL RIGHTS RESERVED</div>
+  </footer>
+
+</body>
+</html>
