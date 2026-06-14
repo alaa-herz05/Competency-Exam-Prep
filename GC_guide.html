@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Golden Computer Competitive Exam Guide 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Cairo:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0a080f;
+      --deep:      #0f0b18;
+      --surface:   #140d22;
+      --card:      #1a1028;
+      --card2:     #201535;
+      --border:    rgba(150, 80, 255, .22);
+      --border2:   rgba(130, 60, 240, .12);
+      --purple:    #9b59f5;
+      --purple2:   #b980ff;
+      --purple3:   #d4a8ff;
+      --purple-glow: rgba(155, 89, 245, .32);
+      --purple-dim:  rgba(155, 89, 245, .08);
+      --gold:      #e0a030;
+      --gold-dim:  rgba(224, 160, 48, .09);
+      --green:     #3dd68c;
+      --green-dim: rgba(61, 214, 140, .09);
+      --red:       #f05060;
+      --red-dim:   rgba(240, 80, 96, .09);
+      --text:      #e8e0f5;
+      --muted:     #9880c0;
+      --muted2:    #c4b0e8;
+      --mono:      'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, Cairo, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ── BG LAYER ── */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .bg-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(155,89,245,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(155,89,245,.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+    }
+    .orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(100px);
+      animation: orbPulse 10s ease-in-out infinite;
+    }
+    .orb1 { width:600px; height:600px; top:-180px; left:-140px;
+      background: radial-gradient(circle, rgba(155,89,245,.12), transparent 70%); }
+    .orb2 { width:420px; height:420px; bottom:-120px; right:-80px;
+      background: radial-gradient(circle, rgba(100,40,200,.10), transparent 70%); animation-delay:-5s; }
+    .orb3 { width:320px; height:320px; top:42%; left:58%;
+      background: radial-gradient(circle, rgba(185,128,255,.06), transparent 70%); animation-delay:-2.5s; }
+    @keyframes orbPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+
+    /* ── TOP NAV ── */
+    .top-nav {
+      position: sticky; top: 0; z-index: 999;
+      background: rgba(10,8,15,.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; gap: 0;
+      height: 54px; overflow-x: auto; scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-brand {
+      font-family: Orbitron, monospace; font-size: 10px; font-weight: 700;
+      color: var(--purple2); letter-spacing: 2.5px;
+      padding-right: 18px; border-right: 1px solid var(--border);
+      margin-right: 14px; flex-shrink: 0; white-space: nowrap;
+    }
+    .nav-links { display: flex; gap: 2px; flex-shrink: 0; }
+    .nav-links a {
+      font-size: 10.5px; font-weight: 600; color: var(--muted);
+      padding: 5px 10px; border-radius: 7px;
+      white-space: nowrap; transition: .2s; letter-spacing: .3px;
+    }
+    .nav-links a:hover { color: var(--purple2); background: var(--purple-dim); }
+
+    /* ── PAGE WRAP ── */
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 1050px; margin: 0 auto;
+      padding: 0 20px 90px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center; padding: 72px 24px 56px;
+      border-bottom: 1px solid var(--border); margin-bottom: 54px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 65% 60% at 50% 0%, rgba(155,89,245,.14), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid var(--border); color: var(--purple2);
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      letter-spacing: 3px; padding: 6px 22px; border-radius: 20px;
+      background: var(--purple-dim); margin-bottom: 22px;
+      box-shadow: 0 0 24px var(--purple-glow);
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100%{box-shadow:0 0 22px var(--purple-glow)}
+      50%{box-shadow:0 0 50px rgba(155,89,245,.5)}
+    }
+    .hero h1 {
+      font-family: Orbitron, monospace;
+      font-size: clamp(1.7rem, 5vw, 3.2rem);
+      font-weight: 900; color: #fff;
+      letter-spacing: -1px; margin-bottom: 10px;
+      line-height: 1.1;
+    }
+    .hero h1 span { color: var(--purple2); }
+    .hero-sub {
+      font-family: Cairo, sans-serif; font-size: 1.05rem;
+      color: var(--gold); margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(224,160,48,.3);
+    }
+    .hero-desc { font-size: 13.5px; color: var(--muted2); max-width: 620px; margin: 0 auto 22px; line-height: 1.9; }
+    .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .hero-tag {
+      font-size: 10.5px; padding: 4px 13px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--card);
+      color: var(--muted2); font-weight: 600; letter-spacing: .4px;
+    }
+
+    /* ── CHAPTER NAV GRID ── */
+    .chapters-nav {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+      gap: 10px; margin-bottom: 54px;
+    }
+    .ch-nav-item {
+      background: var(--card); border: 1px solid var(--border2);
+      border-radius: 14px; padding: 14px 16px;
+      display: flex; align-items: center; gap: 10px;
+      transition: .22s; cursor: pointer;
+    }
+    .ch-nav-item:hover { border-color: var(--border); background: var(--card2); transform: translateY(-2px); }
+    .ch-nav-num {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: #fff; background: var(--purple);
+      width: 28px; height: 28px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 0 12px var(--purple-glow);
+    }
+    .ch-nav-label { font-size: 12px; font-weight: 600; color: var(--muted2); line-height: 1.4; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 60px; scroll-margin-top: 68px; }
+    .sec-header { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+    .sec-number {
+      font-family: Orbitron, monospace; font-size: 10px; font-weight: 700;
+      color: #fff; background: linear-gradient(135deg, var(--purple), #6b30d0);
+      width: 34px; height: 34px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; box-shadow: 0 0 16px var(--purple-glow);
+    }
+    .sec-title {
+      font-family: Orbitron, monospace; font-size: 13px; font-weight: 700;
+      color: var(--purple2); letter-spacing: 2px; text-transform: uppercase; flex: 1;
+    }
+    .sec-sub {
+      font-family: Cairo, sans-serif; font-size: 12.5px;
+      color: var(--muted); margin-top: 2px;
+    }
+    .sec-line { height: 1px; flex: 1; background: linear-gradient(90deg, var(--border), transparent); }
+    .weight-badge {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      letter-spacing: 1.5px; padding: 4px 12px; border-radius: 10px;
+      border: 1px solid rgba(224,160,48,.3); background: var(--gold-dim);
+      color: var(--gold); white-space: nowrap;
+    }
+
+    /* ── CONTENT CARD ── */
+    .content-card {
+      background: var(--card); border: 1px solid var(--border2);
+      border-radius: 18px; padding: 26px 28px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.4);
+      margin-bottom: 14px; transition: .22s;
+    }
+    .content-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--purple), transparent);
+    }
+    .content-card:hover { border-color: var(--border); }
+
+    .card-title {
+      font-family: Cairo, sans-serif; font-size: 1.05rem; font-weight: 900;
+      color: #fff; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .card-icon {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: var(--purple-dim); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; flex-shrink: 0;
+    }
+    .card-ar {
+      font-family: Cairo, sans-serif; font-size: 13px;
+      color: var(--gold); background: var(--gold-dim);
+      border: 1px solid rgba(224,160,48,.15); border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 16px;
+      direction: rtl; line-height: 1.9;
+    }
+    .card-ar-label {
+      font-size: 9.5px; font-family: Orbitron, monospace; color: var(--gold);
+      letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-bottom: 5px; opacity: .7;
+    }
+    .card-body { font-size: 14px; color: var(--muted2); line-height: 1.9; }
+    .card-body p { margin-bottom: 10px; }
+    .card-body p:last-child { margin-bottom: 0; }
+
+    /* ── POINTS ── */
+    .points { list-style: none; margin: 0; padding: 0; }
+    .points li {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 8px 0; border-bottom: 1px solid var(--border2);
+      font-size: 14px; color: var(--text); line-height: 1.7;
+    }
+    .points li:last-child { border-bottom: none; }
+    .pt-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+      background: var(--purple); margin-top: 7px;
+      box-shadow: 0 0 6px var(--purple-glow);
+    }
+    .pt-dot.green { background: var(--green); box-shadow: 0 0 6px rgba(61,214,140,.4); }
+    .pt-dot.red   { background: var(--red);   box-shadow: 0 0 6px rgba(240,80,96,.4); }
+    .pt-dot.gold  { background: var(--gold);  box-shadow: 0 0 6px rgba(224,160,48,.4); }
+
+    /* ── TWO COL ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    @media(max-width:600px){ .two-col { grid-template-columns: 1fr; } }
+    .three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 14px; }
+    @media(max-width:720px){ .three-col { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:480px){ .three-col { grid-template-columns: 1fr; } }
+
+    .col-card {
+      background: var(--card2); border: 1px solid var(--border2);
+      border-radius: 14px; padding: 18px;
+    }
+    .col-card-title {
+      font-family: Orbitron, monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .col-purple .col-card-title { color: var(--purple2); border-bottom: 1px solid var(--border2); padding-bottom: 8px; }
+    .col-gold   .col-card-title { color: var(--gold);    border-bottom: 1px solid rgba(224,160,48,.15); padding-bottom: 8px; }
+    .col-green  .col-card-title { color: var(--green);   border-bottom: 1px solid rgba(61,214,140,.15); padding-bottom: 8px; }
+    .col-red    .col-card-title { color: var(--red);     border-bottom: 1px solid rgba(240,80,96,.15); padding-bottom: 8px; }
+    .col-card .card-body { font-size: 13px; }
+
+    /* ── FORMULA / INFO / WARNING BOXES ── */
+    .formula-box {
+      background: rgba(155,89,245,.07); border: 1px solid rgba(155,89,245,.28);
+      border-radius: 12px; padding: 16px 20px; margin: 14px 0;
+      font-family: var(--mono); font-size: 13.5px; color: var(--purple3);
+      text-align: center; letter-spacing: .5px; line-height: 1.8;
+    }
+    .info-box {
+      background: var(--purple-dim); border: 1px solid rgba(155,89,245,.2);
+      border-radius: 12px; padding: 14px 18px; margin: 12px 0;
+      font-size: 13.5px; color: var(--muted2); line-height: 1.85;
+    }
+    .info-box .hl-label {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: var(--purple2); letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+    .tip-box {
+      background: var(--gold-dim); border: 1px solid rgba(224,160,48,.2);
+      border-radius: 12px; padding: 14px 18px; margin: 12px 0;
+      font-size: 13.5px; color: var(--muted2); line-height: 1.85;
+    }
+    .tip-box .hl-label {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+    .warn-box {
+      background: var(--red-dim); border: 1px solid rgba(240,80,96,.2);
+      border-radius: 12px; padding: 14px 18px; margin: 12px 0;
+      font-size: 13.5px; color: var(--muted2); line-height: 1.85;
+    }
+    .warn-box .hl-label {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: var(--red); letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+    .green-box {
+      background: var(--green-dim); border: 1px solid rgba(61,214,140,.2);
+      border-radius: 12px; padding: 14px 18px; margin: 12px 0;
+      font-size: 13.5px; color: var(--muted2); line-height: 1.85;
+    }
+    .green-box .hl-label {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: var(--green); letter-spacing: 2px; text-transform: uppercase;
+      display: block; margin-bottom: 6px;
+    }
+
+    /* ── TABLE ── */
+    .data-table {
+      width: 100%; border-collapse: collapse; font-size: 13px;
+      margin: 12px 0; border-radius: 12px; overflow: hidden;
+    }
+    .data-table th {
+      background: rgba(155,89,245,.1); color: var(--purple2);
+      padding: 11px 14px; text-align: left;
+      font-family: Orbitron, monospace; font-size: 9.5px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border2);
+      color: var(--text); vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(155,89,245,.05); }
+    .data-table .hi  { color: var(--purple2); font-weight: 700; }
+    .data-table .muted { color: var(--muted); }
+    .data-table .gold  { color: var(--gold); }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: var(--card2); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 16px 20px;
+      font-family: var(--mono); font-size: 12.5px; color: var(--purple3);
+      margin: 12px 0; overflow-x: auto; line-height: 1.75;
+    }
+    .code-label {
+      font-family: Orbitron, monospace; font-size: 9px; font-weight: 700;
+      color: var(--purple); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 8px; display: block; opacity: .7;
+    }
+
+    /* ── QUIZ SECTION ── */
+    .quiz-section {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px 30px; margin-top: 16px;
+      position: relative; overflow: hidden;
+    }
+    .quiz-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green), transparent);
+    }
+    .quiz-title {
+      font-family: Orbitron, monospace; font-size: 11px; font-weight: 700;
+      color: var(--green); letter-spacing: 2px; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .q-item {
+      background: var(--card2); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 14px 18px; margin-bottom: 10px;
+    }
+    .q-item:last-child { margin-bottom: 0; }
+    .q-text { font-size: 13.5px; color: var(--text); margin-bottom: 6px; }
+    .q-ans {
+      font-size: 12.5px; color: var(--green); font-weight: 700;
+      font-family: var(--mono);
+    }
+
+    /* ── CHEAT SHEET CHIPS ── */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .chip {
+      font-size: 12px; padding: 5px 14px; border-radius: 12px;
+      border: 1px solid var(--border); background: var(--card2);
+      color: var(--muted2); font-weight: 600;
+    }
+    .chip.purple { border-color: rgba(155,89,245,.3); color: var(--purple2); background: var(--purple-dim); }
+    .chip.gold   { border-color: rgba(224,160,48,.3);  color: var(--gold);    background: var(--gold-dim); }
+    .chip.green  { border-color: rgba(61,214,140,.3);  color: var(--green);   background: var(--green-dim); }
+
+    /* ── DIVIDER ── */
+    .chapter-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 56px 0; position: relative;
+    }
+    .chapter-divider::after {
+      content: '◆'; position: absolute; top: -10px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px; color: var(--purple); background: var(--bg);
+      padding: 0 12px;
+    }
+
+    /* ── FLOW ── */
+    .flow-row {
+      display: flex; align-items: center; flex-wrap: wrap; gap: 0;
+      margin: 14px 0;
+    }
+    .flow-step {
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 16px;
+      font-size: 13px; color: var(--text); font-weight: 600;
+      white-space: nowrap;
+    }
+    .flow-arrow {
+      font-size: 18px; color: var(--purple); padding: 0 6px; flex-shrink: 0;
+    }
+
+    /* ── COMPARISON TABLE special row ── */
+    .vs-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: start; margin: 12px 0; }
+    .vs-label {
+      font-family: Orbitron, monospace; font-size: 10px; font-weight: 700;
+      color: var(--purple); text-align: center; padding: 6px 0; letter-spacing: 2px;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- BG -->
+<div class="bg-layer">
+  <div class="bg-grid"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <div class="nav-brand">GC GUIDE 2026</div>
+    <div class="nav-links">
+      <a href="#ch1">Ch.1</a>
+      <a href="#ch2">Ch.2</a>
+      <a href="#ch3">Ch.3</a>
+      <a href="#ch4">Ch.4</a>
+      <a href="#ch5">Ch.5</a>
+      <a href="#ch6">Ch.6</a>
+      <a href="#ch7">Ch.7</a>
+      <a href="#ch8">Ch.8</a>
+      <a href="#ch9">Ch.9</a>
+      <a href="#ch10">Ch.10</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="page-wrap">
+  <div class="hero">
+    <div class="hero-badge">🏆 GOLDEN COMPUTER · COMPETITIVE EXAM GUIDE</div>
+    <h1>Golden <span>Computer</span><br>Exam Guide <span>2026</span></h1>
+    <div class="hero-sub">دليل الاستعداد للامتحان التنافسي — شامل لجميع الفصول</div>
+    <p class="hero-desc">Complete study reference covering all 10 chapters — Computer Fundamentals, Hardware, Software, Operating Systems, Cyber Security, Networking, Cloud & AI, Databases, Programming, and Final Review.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">10 Chapters</span>
+      <span class="hero-tag">Arabic + English</span>
+      <span class="hero-tag">Practice Questions</span>
+      <span class="hero-tag">Exam Tips</span>
+      <span class="hero-tag">Quick Reviews</span>
+      <span class="hero-tag">Cheat Sheet</span>
+    </div>
+  </div>
+
+  <!-- CHAPTER NAVIGATION GRID -->
+  <div class="chapters-nav">
+    <a href="#ch1" class="ch-nav-item"><div class="ch-nav-num">01</div><div class="ch-nav-label">Computer Fundamentals</div></a>
+    <a href="#ch2" class="ch-nav-item"><div class="ch-nav-num">02</div><div class="ch-nav-label">Hardware Fundamentals</div></a>
+    <a href="#ch3" class="ch-nav-item"><div class="ch-nav-num">03</div><div class="ch-nav-label">Software Fundamentals</div></a>
+    <a href="#ch4" class="ch-nav-item"><div class="ch-nav-num">04</div><div class="ch-nav-label">Operating Systems</div></a>
+    <a href="#ch5" class="ch-nav-item"><div class="ch-nav-num">05</div><div class="ch-nav-label">Cyber Security & Malware</div></a>
+    <a href="#ch6" class="ch-nav-item"><div class="ch-nav-num">06</div><div class="ch-nav-label">Computer Networks</div></a>
+    <a href="#ch7" class="ch-nav-item"><div class="ch-nav-num">07</div><div class="ch-nav-label">Cloud & Emerging Tech</div></a>
+    <a href="#ch8" class="ch-nav-item"><div class="ch-nav-num">08</div><div class="ch-nav-label">Databases & SQL</div></a>
+    <a href="#ch9" class="ch-nav-item"><div class="ch-nav-num">09</div><div class="ch-nav-label">Programming & OOP</div></a>
+    <a href="#ch10" class="ch-nav-item"><div class="ch-nav-num">10</div><div class="ch-nav-label">Golden Review & Cheat Sheet</div></a>
+  </div>
+
+  <!-- ════════════════════════════════════
+       CHAPTER 1 — COMPUTER FUNDAMENTALS
+  ════════════════════════════════════ -->
+  <section class="section" id="ch1">
+    <div class="sec-header">
+      <div class="sec-number">01</div>
+      <div>
+        <div class="sec-title">Computer Fundamentals</div>
+        <div class="sec-sub">أساسيات الحاسوب</div>
+      </div>
+      <div class="sec-line"></div>
+      <div class="weight-badge">★★★★★ Very High</div>
+    </div>
+
+    <!-- What is a Computer -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">💻</div>What is a Computer?</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        الحاسوب هو جهاز إلكتروني يقبل البيانات (Input)، يعالجها وفق تعليمات (Processing)، يخزّنها (Storage)، ويُخرج معلومات مفيدة (Output).
+      </div>
+      <div class="card-body">
+        <p>A computer is an electronic device that <strong>accepts data</strong>, <strong>processes it</strong> according to stored instructions, <strong>stores results</strong>, and <strong>produces meaningful information</strong> as output.</p>
+      </div>
+      <div class="formula-box">Input → Processing → Storage → Output &nbsp; (IPO Cycle)</div>
+    </div>
+
+    <!-- Data vs Information -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📊</div>Data vs Information</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        البيانات (Data): حقائق خام بدون معنى — مثل: 85، 90، 70. المعلومات (Information): بيانات مُعالَجة ذات معنى — مثل: متوسط الدرجات = 81.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">📥 Data — البيانات</div>
+          <div class="card-body">Raw, unprocessed facts with no meaning on their own.<br><em>Example: 85, 90, 70</em></div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">📤 Information — المعلومات</div>
+          <div class="card-body">Processed data that has context and meaning.<br><em>Example: Average score = 81.7</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔧</div>Computer System Components</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        نظام الحاسوب يتكون من: المكونات المادية (Hardware)، البرامج (Software)، البيانات (Data)، المستخدمون (Users)، الإجراءات (Procedures).
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple"><div class="col-card-title">🖥️ Hardware</div><div class="card-body">Physical components: CPU, RAM, Keyboard, Mouse, Monitor, Printer</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">💿 Software</div><div class="card-body">Programs & instructions: Windows, Linux, Chrome, MS Word</div></div>
+        <div class="col-card col-green"><div class="col-card-title">👤 Users & Data</div><div class="card-body">People who use the system and the data they work with</div></div>
+      </div>
+    </div>
+
+    <!-- Characteristics -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚡</div>Computer Characteristics</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        مميزات الحاسوب: السرعة، الدقة، الأتمتة (العمل الآلي)، الموثوقية، سعة التخزين، والتنوع.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Characteristic</th><th>الخاصية</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Speed</td><td class="gold">السرعة</td><td>Processes millions of instructions per second</td></tr>
+          <tr><td class="hi">Accuracy</td><td class="gold">الدقة</td><td>Produces correct results every time</td></tr>
+          <tr><td class="hi">Automation</td><td class="gold">الأتمتة</td><td>Works automatically after receiving instructions</td></tr>
+          <tr><td class="hi">Reliability</td><td class="gold">الموثوقية</td><td>Consistent performance without errors</td></tr>
+          <tr><td class="hi">Storage Capacity</td><td class="gold">سعة التخزين</td><td>Stores vast amounts of data permanently</td></tr>
+          <tr><td class="hi">Versatility</td><td class="gold">التنوع</td><td>Can perform a wide variety of tasks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Review -->
+    <div class="tip-box">
+      <span class="hl-label">⚡ Quick Review — المراجعة السريعة</span>
+      CPU = Processing &nbsp;|&nbsp; Keyboard = Input &nbsp;|&nbsp; Monitor = Output &nbsp;|&nbsp; SSD/HDD = Storage &nbsp;|&nbsp; Information = Processed Data
+    </div>
+
+    <!-- Practice Questions -->
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions — أسئلة تدريبية</div>
+      <div class="q-item"><div class="q-text">1. Computer converts ______ into information.</div><div class="q-ans">✅ Answer: Data</div></div>
+      <div class="q-item"><div class="q-text">2. Which component performs processing?</div><div class="q-ans">✅ Answer: CPU</div></div>
+      <div class="q-item"><div class="q-text">3. Which feature means correct results?</div><div class="q-ans">✅ Answer: Accuracy</div></div>
+      <div class="q-item"><div class="q-text">4. Working automatically after instructions is called?</div><div class="q-ans">✅ Answer: Automation</div></div>
+      <div class="q-item"><div class="q-text">5. Which stage permanently saves files?</div><div class="q-ans">✅ Answer: Storage</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 2 — HARDWARE
+  ════════════════════════════════════ -->
+  <section class="section" id="ch2">
+    <div class="sec-header">
+      <div class="sec-number">02</div>
+      <div>
+        <div class="sec-title">Hardware Fundamentals</div>
+        <div class="sec-sub">أساسيات المكونات المادية</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <!-- CPU -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🧠</div>CPU — Central Processing Unit</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المعالج المركزي هو "دماغ" الحاسوب. يتكون من: ALU (وحدة الحساب والمنطق)، وحدة التحكم (CU)، السجلات (Registers)، وذاكرة الكاش (Cache).
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">⚙️ ALU</div>
+          <div class="card-body">Arithmetic & Logic Unit — performs +, −, ×, ÷ and logical operations (AND, OR, NOT, comparisons)</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">🎛️ Control Unit</div>
+          <div class="card-body">Controls and coordinates all hardware components, manages instruction execution</div>
+        </div>
+        <div class="col-card col-green">
+          <div class="col-card-title">📌 Registers</div>
+          <div class="card-body">Smallest & fastest storage inside the CPU — holds temporary values during processing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cache & Memory -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">💾</div>Memory Hierarchy</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        هرم الذاكرة (من الأسرع للأبطأ): السجلات → الكاش (L1, L2, L3) → RAM → التخزين الثانوي (SSD/HDD). كلما كانت الذاكرة أسرع، كانت سعتها أصغر وأغلى.
+      </div>
+      <div class="formula-box">
+        Registers (fastest) → Cache L1 → Cache L2 → Cache L3 → RAM → SSD → HDD (slowest)
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">🔵 RAM — الذاكرة المؤقتة</div>
+          <div class="card-body"><strong>Volatile</strong> — loses data when power is off. Temporary working memory. Fast access for running programs.</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">🟡 ROM — الذاكرة الدائمة</div>
+          <div class="card-body"><strong>Non-volatile</strong> — retains data without power. Stores firmware/BIOS. Read-only by CPU.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">💿</div>Storage Devices</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        HDD: مغناطيسي، أبطأ، أرخص. SSD: إلكتروني، أسرع، صامت. NVMe SSD أسرع من SATA SSD.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Storage</th><th>Speed</th><th>Technology</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">NVMe SSD</td><td class="gold">Fastest</td><td>Flash + PCIe</td><td>Best performance for OS & apps</td></tr>
+          <tr><td class="hi">SATA SSD</td><td class="gold">Fast</td><td>Flash + SATA</td><td>Silent, no moving parts</td></tr>
+          <tr><td class="hi">HDD</td><td class="muted">Slow</td><td>Magnetic disks</td><td>Cheaper, larger capacity</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Input/Output -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🖱️</div>Input vs Output Devices</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        أجهزة الإدخال: لوحة المفاتيح، الفأرة، الماسح الضوئي، الميكروفون. أجهزة الإخراج: الشاشة، الطابعة، السماعات، جهاز العرض.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-green"><div class="col-card-title">📥 Input Devices</div><div class="card-body">Keyboard, Mouse, Scanner, Microphone, Webcam, Barcode Reader</div></div>
+        <div class="col-card col-red"><div class="col-card-title">📤 Output Devices</div><div class="card-body">Monitor, Printer, Speakers, Projector, Plotter</div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <span class="hl-label">⚡ Exam Tips</span>
+      CPU = Brain | Cache = Fastest memory after Registers | SSD &gt; HDD in speed | RAM = volatile (loses data) | ROM = non-volatile
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Brain of the computer?</div><div class="q-ans">✅ CPU</div></div>
+      <div class="q-item"><div class="q-text">2. Fastest memory after registers?</div><div class="q-ans">✅ Cache</div></div>
+      <div class="q-item"><div class="q-text">3. Temporary memory that loses data on power off?</div><div class="q-ans">✅ RAM</div></div>
+      <div class="q-item"><div class="q-text">4. Firmware is stored in?</div><div class="q-ans">✅ ROM</div></div>
+      <div class="q-item"><div class="q-text">5. Which is faster: SSD or HDD?</div><div class="q-ans">✅ SSD</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 3 — SOFTWARE
+  ════════════════════════════════════ -->
+  <section class="section" id="ch3">
+    <div class="sec-header">
+      <div class="sec-number">03</div>
+      <div>
+        <div class="sec-title">Software Fundamentals</div>
+        <div class="sec-sub">أساسيات البرمجيات</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">💿</div>Types of Software</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        البرمجيات نوعان: برامج النظام (تدير الحاسوب) وبرامج التطبيقات (تساعد المستخدم على إنجاز المهام).
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">🖥️ System Software</div>
+          <div class="card-body">Manages computer hardware and resources.<br><strong>Includes:</strong> Operating Systems, Device Drivers, Utility Programs, Firmware.<br><em>Examples: Windows, Linux, macOS</em></div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">📱 Application Software</div>
+          <div class="card-body">Helps users perform specific tasks.<br><em>Examples: Microsoft Word, Excel, Chrome, Photoshop, VLC, Games</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔄</div>Compiler vs Interpreter vs Assembler</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المُترجم (Compiler): يترجم البرنامج كاملاً دفعة واحدة — أسرع عند التشغيل. المُفسِّر (Interpreter): يترجم سطراً بسطر — أسهل في تتبع الأخطاء. المُجمِّع (Assembler): يحوّل لغة Assembly إلى لغة الآلة.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Translator</th><th>How it Works</th><th>Speed</th><th>Debugging</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Compiler</td><td>Translates entire program at once</td><td class="gold">Faster at runtime</td><td class="muted">Harder</td></tr>
+          <tr><td class="hi">Interpreter</td><td>Translates line by line</td><td class="muted">Slower</td><td class="gold">Easier</td></tr>
+          <tr><td class="hi">Assembler</td><td>Assembly → Machine language</td><td class="gold">Very fast</td><td class="muted">Complex</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚖️</div>Open Source vs Proprietary</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المصدر المفتوح: يمكن عرض الكود وتعديله (مثل Linux). المُغلق (Proprietary): مملوك لشركة والكود سري (مثل Windows، Adobe).
+      </div>
+      <div class="two-col">
+        <div class="col-card col-green"><div class="col-card-title">🔓 Open Source</div><div class="card-body">Source code is public — users can view, modify, and distribute. Examples: Linux, Firefox, VLC, LibreOffice</div></div>
+        <div class="col-card col-red"><div class="col-card-title">🔒 Proprietary</div><div class="card-body">Company owns code — closed source. Examples: Windows, macOS, Adobe Photoshop, Microsoft Office</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🛡️</div>Utility Software & Firmware</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        برامج الخدمة: تُحافظ على أداء الحاسوب (مضاد الفيروسات، النسخ الاحتياطي، ضغط الملفات). البرامج الثابتة (Firmware): برامج دائمة مخزّنة في ROM تتحكم في الأجهزة عند بدء التشغيل.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔧 Utility Software</div><div class="card-body">Antivirus, Backup tools, Disk Cleanup, Disk Defragmenter, File Compression (ZIP/WinRAR)</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">⚙️ Firmware</div><div class="card-body">Stored in ROM/Flash memory. Controls hardware at startup. Example: BIOS/UEFI on motherboard</div></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <span class="hl-label">⚡ Exam Tips</span>
+      OS = System Software | Word = Application Software | Compiler = faster at runtime | Interpreter = easier to debug | Firmware stored in ROM/Flash
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which software manages hardware?</div><div class="q-ans">✅ Operating System</div></div>
+      <div class="q-item"><div class="q-text">2. Microsoft Word is which type of software?</div><div class="q-ans">✅ Application Software</div></div>
+      <div class="q-item"><div class="q-text">3. Which translator works line by line?</div><div class="q-ans">✅ Interpreter</div></div>
+      <div class="q-item"><div class="q-text">4. Which translates the whole program at once?</div><div class="q-ans">✅ Compiler</div></div>
+      <div class="q-item"><div class="q-text">5. Firmware is stored in?</div><div class="q-ans">✅ ROM / Flash Memory</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 4 — OPERATING SYSTEMS
+  ════════════════════════════════════ -->
+  <section class="section" id="ch4">
+    <div class="sec-header">
+      <div class="sec-number">04</div>
+      <div>
+        <div class="sec-title">Operating Systems</div>
+        <div class="sec-sub">أنظمة التشغيل</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🖥️</div>What is an Operating System?</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        نظام التشغيل هو برنامج نظام يدير موارد الحاسوب المادية والبرمجية ويوفر خدمات للتطبيقات. هو الوسيط بين المستخدم والعتاد.
+      </div>
+      <div class="card-body"><p>System software that manages hardware, software resources, and provides services for application programs. It acts as the <strong>bridge between users and hardware</strong>.</p></div>
+      <div class="info-box">
+        <span class="hl-label">🔑 Main Functions</span>
+        Process Management · Memory Management · File Management · Device Management · Security Management · User Interface
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚙️</div>Kernel & Shell</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        النواة (Kernel): القلب الحقيقي لنظام التشغيل — تتواصل مباشرةً مع العتاد. الغلاف (Shell): الواجهة بين المستخدم والنظام — إما CLI (سطر أوامر) أو GUI (رسومي).
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔮 Kernel</div><div class="card-body">Core of the OS. Communicates directly with hardware. Controls CPU, memory, and devices. Always running in the background.</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🖥️ Shell</div><div class="card-body">Interface between user and OS.<br><strong>CLI</strong> = Command Line (e.g., Terminal, CMD)<br><strong>GUI</strong> = Graphical (e.g., Windows Desktop)</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📋</div>Types of Operating Systems</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        أنواع أنظمة التشغيل: Batch (دُفعي)، Time-Sharing (تقاسم وقت)، Multiuser (متعدد المستخدمين)، Multitasking (متعدد المهام)، Real-Time (زمن حقيقي)، Distributed (موزّع).
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Type</th><th>النوع</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Batch OS</td><td class="gold">دُفعي</td><td>Processes jobs in batches without user interaction</td></tr>
+          <tr><td class="hi">Time-Sharing OS</td><td class="gold">تقاسم الوقت</td><td>Multiple users share CPU time simultaneously</td></tr>
+          <tr><td class="hi">Multiuser OS</td><td class="gold">متعدد المستخدمين</td><td>Multiple users access the system at the same time</td></tr>
+          <tr><td class="hi">Multitasking OS</td><td class="gold">متعدد المهام</td><td>Run multiple programs at the same time</td></tr>
+          <tr><td class="hi">Real-Time OS (RTOS)</td><td class="gold">زمن حقيقي</td><td>Processes data as it arrives with no delay (e.g., medical, aviation)</td></tr>
+          <tr><td class="hi">Distributed OS</td><td class="gold">موزّع</td><td>Manages a group of networked computers as one system</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🧩</div>Virtual Memory & Multitasking</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        الذاكرة الافتراضية: تستخدم جزءاً من القرص الصلب كذاكرة إضافية عندما تمتلئ RAM. أبطأ من RAM لكنها تمنع توقف النظام. تعدد المهام: تشغيل برامج متعددة في آنٍ واحد. تعدد المعالجات: استخدام أكثر من CPU/Core.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔁 Multitasking</div><div class="card-body">Running multiple programs seemingly at the same time on <strong>one CPU</strong> by switching rapidly between tasks</div></div>
+        <div class="col-card col-green"><div class="col-card-title">⚡ Multiprocessing</div><div class="card-body">Using <strong>two or more CPUs/cores</strong> simultaneously to process tasks in parallel — true parallel execution</div></div>
+      </div>
+      <div class="warn-box"><span class="hl-label">⚠️ Virtual Memory</span>Uses part of HDD/SSD as extra RAM when RAM is full. It is <strong>slower than RAM</strong>. Prevents system crashes when memory is exhausted.</div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚖️</div>Windows vs Linux</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        Windows: سهل الاستخدام، تجاري، دعم ممتاز للبرامج. Linux: مفتوح المصدر، آمن، مستقر، شائع على الخوادم.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Feature</th><th>Windows</th><th>Linux</th></tr></thead>
+        <tbody>
+          <tr><td>License</td><td class="gold">Proprietary (paid)</td><td class="hi">Open Source (free)</td></tr>
+          <tr><td>Ease of Use</td><td class="gold">Very user-friendly</td><td class="muted">Requires more knowledge</td></tr>
+          <tr><td>Security</td><td class="muted">More targeted by malware</td><td class="hi">More secure</td></tr>
+          <tr><td>Common Use</td><td>Desktop, gaming, business</td><td>Servers, development, embedded</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip-box"><span class="hl-label">⚡ Exam Tips</span>OS = System Software | Kernel = core of OS | Virtual Memory uses DISK space | Linux = Open Source | Windows = Proprietary</div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which software manages computer hardware?</div><div class="q-ans">✅ Operating System</div></div>
+      <div class="q-item"><div class="q-text">2. What is the core of the OS?</div><div class="q-ans">✅ Kernel</div></div>
+      <div class="q-item"><div class="q-text">3. Which memory uses disk space when RAM is full?</div><div class="q-ans">✅ Virtual Memory</div></div>
+      <div class="q-item"><div class="q-text">4. Which operating system is open source?</div><div class="q-ans">✅ Linux</div></div>
+      <div class="q-item"><div class="q-text">5. Which component interacts directly with hardware?</div><div class="q-ans">✅ Kernel</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 5 — CYBER SECURITY
+  ════════════════════════════════════ -->
+  <section class="section" id="ch5">
+    <div class="sec-header">
+      <div class="sec-number">05</div>
+      <div>
+        <div class="sec-title">Cyber Security & Malware</div>
+        <div class="sec-sub">الأمن السيبراني والبرامج الخبيثة</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🛡️</div>CIA Triad — ثالوث الأمن</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        ثالوث أمن المعلومات: السرية (Confidentiality) — فقط المصرّح لهم يصلون للبيانات. النزاهة (Integrity) — البيانات دقيقة وغير مُعدَّلة. التوفر (Availability) — الخدمات والبيانات متاحة دائماً.
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔐 Confidentiality</div><div class="card-body">Only authorized users can access data. Enforced by passwords, encryption, access controls.</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">✅ Integrity</div><div class="card-body">Data remains accurate and unchanged. Enforced by hashing, checksums, digital signatures.</div></div>
+        <div class="col-card col-green"><div class="col-card-title">🟢 Availability</div><div class="card-body">Data and services remain accessible when needed. Enforced by backups, redundancy, uptime monitoring.</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🦠</div>Common Malware Types</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        الفيروس: يحتاج ملف مضيف. الدودة: تنتشر بنفسها عبر الشبكة. حصان طروادة: يتنكّر كبرنامج شرعي. الفدية: يشفّر الملفات ويطلب فدية. برنامج التجسس: يراقب المستخدم خفية. برنامج الإعلانات: يعرض إعلانات غير مرغوبة.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Malware</th><th>البرنامج الخبيث</th><th>How it Works</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Virus</td><td class="gold">فيروس</td><td>Attaches to a host file — needs user action to spread</td></tr>
+          <tr><td class="hi">Worm</td><td class="gold">دودة</td><td>Spreads automatically over networks — no host file needed</td></tr>
+          <tr><td class="hi">Trojan</td><td class="gold">حصان طروادة</td><td>Disguised as legitimate software — runs secretly when installed</td></tr>
+          <tr><td class="hi">Ransomware</td><td class="gold">برنامج الفدية</td><td>Encrypts files and demands payment for decryption key</td></tr>
+          <tr><td class="hi">Spyware</td><td class="gold">برنامج تجسس</td><td>Secretly monitors user activity and sends data to attacker</td></tr>
+          <tr><td class="hi">Adware</td><td class="gold">برنامج إعلانات</td><td>Displays unwanted advertisements</td></tr>
+          <tr><td class="hi">Rootkit</td><td class="gold">جذر خفي</td><td>Hides malicious software from the OS and antivirus</td></tr>
+          <tr><td class="hi">Keylogger</td><td class="gold">مسجّل لوحة مفاتيح</td><td>Records every keystroke — captures passwords</td></tr>
+          <tr><td class="hi">Botnet</td><td class="gold">شبكة بوت</td><td>Group of infected devices controlled remotely by an attacker</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚔️</div>Common Attacks & Security Tools</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        الهجمات الشائعة: التصيد الاحتيالي (Phishing)، القوة الغاشمة (Brute Force)، حقن SQL، هجمات DoS/DDoS. أدوات الحماية: الجدار الناري (Firewall)، برامج مكافحة الفيروسات، VPN، IDS/IPS.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-red">
+          <div class="col-card-title">💥 Common Attacks</div>
+          <div class="card-body">
+            <ul class="points">
+              <li><span class="pt-dot red"></span><strong>Phishing</strong> — tricks users into revealing credentials</li>
+              <li><span class="pt-dot red"></span><strong>Brute Force</strong> — tries all password combinations</li>
+              <li><span class="pt-dot red"></span><strong>SQL Injection</strong> — malicious SQL into database queries</li>
+              <li><span class="pt-dot red"></span><strong>DoS/DDoS</strong> — floods server to deny service</li>
+              <li><span class="pt-dot red"></span><strong>XSS</strong> — injects scripts into web pages</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-card col-green">
+          <div class="col-card-title">🛡️ Security Tools</div>
+          <div class="card-body">
+            <ul class="points">
+              <li><span class="pt-dot green"></span><strong>Firewall</strong> — filters incoming/outgoing traffic</li>
+              <li><span class="pt-dot green"></span><strong>Antivirus</strong> — detects & removes malware</li>
+              <li><span class="pt-dot green"></span><strong>IDS</strong> — detects attacks</li>
+              <li><span class="pt-dot green"></span><strong>IPS</strong> — detects AND blocks attacks</li>
+              <li><span class="pt-dot green"></span><strong>VPN</strong> — encrypts internet traffic</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔐</div>Authentication vs Authorization & Encryption</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المصادقة (Authentication): التحقق من الهوية "من أنت؟". التفويض (Authorization): تحديد الصلاحيات "ماذا يمكنك فعله؟". التشفير: تحويل البيانات لصورة غير مقروءة. الهاش: تحويل لقيمة ثابتة الطول ولا يمكن عكسه.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔑 Authentication</div><div class="card-body">Verifies identity — <em>"Who are you?"</em><br>Methods: passwords, biometrics, MFA, tokens</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🗝️ Authorization</div><div class="card-body">Determines permissions — <em>"What can you access?"</em><br>Methods: roles, access control lists</div></div>
+      </div>
+      <div class="info-box"><span class="hl-label">🔒 Encryption vs Hashing</span><strong>Encryption</strong>: converts readable data into unreadable form using a key — <em>can be reversed</em>. &nbsp;|&nbsp; <strong>Hashing</strong>: creates a fixed-length value — <em>cannot be reversed</em>. Used for password storage.</div>
+    </div>
+
+    <div class="green-box"><span class="hl-label">🛡️ Security Best Practices</span>Use strong passwords · Enable MFA · Install antivirus · Update software regularly · Use firewalls · Perform regular backups · Avoid phishing emails</div>
+
+    <div class="tip-box">
+      <span class="hl-label">⚡ Exam Tips</span>
+      Virus = needs host file | Worm = spreads by itself | Trojan = pretends to be legitimate | Ransomware = encrypts files | Firewall = filters traffic | Best protection against ransomware = Regular Backup
+    </div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which malware spreads without user action?</div><div class="q-ans">✅ Worm</div></div>
+      <div class="q-item"><div class="q-text">2. Which malware encrypts files and demands payment?</div><div class="q-ans">✅ Ransomware</div></div>
+      <div class="q-item"><div class="q-text">3. Which tool filters incoming/outgoing traffic?</div><div class="q-ans">✅ Firewall</div></div>
+      <div class="q-item"><div class="q-text">4. Which attack tricks users into revealing information?</div><div class="q-ans">✅ Phishing</div></div>
+      <div class="q-item"><div class="q-text">5. Best protection against ransomware?</div><div class="q-ans">✅ Regular Backup</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 6 — NETWORKS
+  ════════════════════════════════════ -->
+  <section class="section" id="ch6">
+    <div class="sec-header">
+      <div class="sec-number">06</div>
+      <div>
+        <div class="sec-title">Computer Networks</div>
+        <div class="sec-sub">شبكات الحاسوب</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🌐</div>Network Types & Topologies</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        أنواع الشبكات: PAN (شخصية)، LAN (محلية)، MAN (مدنية)، WAN (واسعة النطاق). أشكال الشبكات: Bus، Star (الأكثر شيوعاً)، Ring، Mesh، Tree.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">📡 Network Types</div>
+          <div class="card-body">
+            <ul class="points">
+              <li><span class="pt-dot"></span><strong>PAN</strong> — Personal Area Network (Bluetooth, ~10m)</li>
+              <li><span class="pt-dot"></span><strong>LAN</strong> — Local Area Network (home, office)</li>
+              <li><span class="pt-dot"></span><strong>MAN</strong> — Metropolitan Area Network (city-wide)</li>
+              <li><span class="pt-dot"></span><strong>WAN</strong> — Wide Area Network (country/world — Internet)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">🔀 Topologies</div>
+          <div class="card-body">
+            <ul class="points">
+              <li><span class="pt-dot gold"></span><strong>Bus</strong> — single cable, all devices share</li>
+              <li><span class="pt-dot gold"></span><strong>Star ⭐</strong> — all connect to central hub/switch (most common)</li>
+              <li><span class="pt-dot gold"></span><strong>Ring</strong> — circular connection</li>
+              <li><span class="pt-dot gold"></span><strong>Mesh</strong> — every device connected to every other</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📦</div>Network Devices</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        Hub: يُرسل لجميع الأجهزة. Switch: يُوجِّه باستخدام عناوين MAC. Router: يربط شبكات مختلفة باستخدام IP. Access Point: يوفر الاتصال اللاسلكي. Modem: يتصل بمزود الإنترنت.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Device</th><th>الجهاز</th><th>How it Works</th><th>Uses</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Hub</td><td class="gold">موزّع</td><td>Broadcasts data to ALL devices</td><td>MAC address</td></tr>
+          <tr><td class="hi">Switch</td><td class="gold">محوّل</td><td>Forwards data using MAC addresses</td><td>MAC address</td></tr>
+          <tr><td class="hi">Router</td><td class="gold">موجّه</td><td>Connects different networks</td><td>IP address</td></tr>
+          <tr><td class="hi">Access Point</td><td class="gold">نقطة وصول</td><td>Provides wireless (Wi-Fi) access</td><td>Wi-Fi</td></tr>
+          <tr><td class="hi">Modem</td><td class="gold">مودم</td><td>Connects local network to ISP/Internet</td><td>Analog↔Digital</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📚</div>OSI Model vs TCP/IP Model</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        نموذج OSI: 7 طبقات (من الأسفل للأعلى): Physical → Data Link → Network → Transport → Session → Presentation → Application. نموذج TCP/IP: 4 طبقات: Network Access → Internet → Transport → Application.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">🔵 OSI Model (7 Layers)</div>
+          <div class="card-body" style="font-family:var(--mono); font-size:12px; line-height:2;">
+            7. Application<br>6. Presentation<br>5. Session<br>4. Transport<br>3. Network<br>2. Data Link<br>1. Physical
+          </div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">🟡 TCP/IP Model (4 Layers)</div>
+          <div class="card-body" style="font-family:var(--mono); font-size:12px; line-height:2;">
+            4. Application<br>3. Transport<br>2. Internet<br>1. Network Access
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📡</div>Common Protocols & IP Addressing</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        البروتوكولات الشائعة: HTTP/HTTPS (ويب)، FTP (نقل ملفات)، SMTP/POP3/IMAP (بريد إلكتروني)، DNS (يترجم الأسماء لـ IP)، DHCP (يُعيّن IP تلقائياً). IPv4: 32 بت. IPv6: 128 بت.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Protocol</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">HTTP / HTTPS</td><td>Web browsing (HTTPS = encrypted)</td></tr>
+          <tr><td class="hi">FTP</td><td>File Transfer Protocol</td></tr>
+          <tr><td class="hi">SMTP</td><td>Send email</td></tr>
+          <tr><td class="hi">POP3 / IMAP</td><td>Receive email</td></tr>
+          <tr><td class="hi">DNS</td><td>Translates domain names to IP addresses</td></tr>
+          <tr><td class="hi">DHCP</td><td>Automatically assigns IP addresses</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box"><span class="hl-label">📌 IP Addressing</span><strong>IPv4</strong>: 32 bits — e.g., 192.168.1.1 &nbsp;|&nbsp; <strong>IPv6</strong>: 128 bits — e.g., 2001:0db8:85a3::8a2e:0370:7334<br>Private IPv4 ranges: 10.x.x.x · 172.16–31.x.x · 192.168.x.x</div>
+    </div>
+
+    <div class="tip-box"><span class="hl-label">⚡ Exam Tips</span>Switch = MAC | Router = IP | DNS = name to IP | DHCP = auto IP | HTTPS = encrypted HTTP | Star = most common topology</div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which device forwards data using MAC addresses?</div><div class="q-ans">✅ Switch</div></div>
+      <div class="q-item"><div class="q-text">2. Which device connects different networks?</div><div class="q-ans">✅ Router</div></div>
+      <div class="q-item"><div class="q-text">3. Which protocol translates domain names to IP?</div><div class="q-ans">✅ DNS</div></div>
+      <div class="q-item"><div class="q-text">4. Which protocol assigns IP addresses automatically?</div><div class="q-ans">✅ DHCP</div></div>
+      <div class="q-item"><div class="q-text">5. How many bits in an IPv4 address?</div><div class="q-ans">✅ 32 bits</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 7 — CLOUD & EMERGING TECH
+  ════════════════════════════════════ -->
+  <section class="section" id="ch7">
+    <div class="sec-header">
+      <div class="sec-number">07</div>
+      <div>
+        <div class="sec-title">Cloud Computing & Emerging Technologies</div>
+        <div class="sec-sub">الحوسبة السحابية والتقنيات الناشئة</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">☁️</div>Cloud Service Models</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        نماذج الخدمة السحابية: IaaS (بنية تحتية كخدمة) — أجهزة افتراضية. PaaS (منصة كخدمة) — بيئة تطوير. SaaS (برنامج كخدمة) — برامج جاهزة عبر الإنترنت مثل Gmail.
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">🏗️ IaaS</div>
+          <div class="card-body"><strong>Infrastructure as a Service</strong><br>Virtual machines, storage, networking.<br><em>Examples: AWS EC2, Azure VMs, Google Compute</em></div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">🛠️ PaaS</div>
+          <div class="card-body"><strong>Platform as a Service</strong><br>Development environment for building apps.<br><em>Examples: Google App Engine, Heroku, Azure App Service</em></div>
+        </div>
+        <div class="col-card col-green">
+          <div class="col-card-title">📱 SaaS</div>
+          <div class="card-body"><strong>Software as a Service</strong><br>Complete software delivered over the Internet.<br><em>Examples: Gmail, Microsoft 365, Zoom, Dropbox</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🏢</div>Cloud Deployment Models</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        نماذج النشر السحابي: العامة (Public) — مشتركة بين الجميع. الخاصة (Private) — لمؤسسة واحدة. الهجينة (Hybrid) — مزيج من العامة والخاصة. المجتمعية (Community) — مشتركة بين مجموعة منظمات.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Model</th><th>Description</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Public Cloud</td><td>Shared infrastructure, managed by provider</td><td>AWS, Azure, GCP</td></tr>
+          <tr><td class="hi">Private Cloud</td><td>Dedicated to one organization</td><td>On-premises VMware</td></tr>
+          <tr><td class="hi">Hybrid Cloud</td><td>Mix of public + private</td><td>Azure Hybrid</td></tr>
+          <tr><td class="hi">Community Cloud</td><td>Shared by a group of organizations</td><td>Government cloud</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🤖</div>AI, ML & Deep Learning</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        الذكاء الاصطناعي (AI): يمكّن الحواسيب من أداء مهام تتطلب ذكاءً بشرياً. التعلم الآلي (ML): فرع من AI — يتعلم الحاسوب من البيانات دون برمجة صريحة. التعلم العميق (Deep Learning): يستخدم شبكات عصبية متعددة الطبقات للمشاكل المعقدة.
+      </div>
+      <div class="formula-box">AI &nbsp;⊃&nbsp; Machine Learning &nbsp;⊃&nbsp; Deep Learning</div>
+      <div class="three-col">
+        <div class="col-card col-purple"><div class="col-card-title">🧠 AI</div><div class="card-body">Enables computers to simulate human intelligence — reasoning, learning, decision-making</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">📊 Machine Learning</div><div class="card-body">Computers learn from data without explicit programming. Subset of AI.</div></div>
+        <div class="col-card col-green"><div class="col-card-title">🔬 Deep Learning</div><div class="card-body">Uses multi-layer neural networks — image recognition, speech, NLP</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🌍</div>IoT, Big Data, Blockchain & Virtualization</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        إنترنت الأشياء (IoT): يربط الأجهزة الذكية بالإنترنت. البيانات الضخمة (Big Data): مجموعات بيانات ضخمة جداً تُحلَّل لاكتشاف أنماط. Blockchain: دفتر أستاذ رقمي لامركزي. الافتراضية: تشغيل أجهزة افتراضية متعددة على جهاز واحد.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">📡 IoT</div>
+          <div class="card-body">Connects smart devices — sensors, cameras, watches, home appliances — to the Internet for data exchange. Example: smart thermostat, smartwatch</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">📊 Big Data</div>
+          <div class="card-body">Extremely large datasets analyzed to discover hidden patterns and trends. Characterized by Volume, Velocity, Variety (3 Vs).</div>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="col-card col-green">
+          <div class="col-card-title">⛓️ Blockchain</div>
+          <div class="card-body">Decentralized digital ledger — stores transactions securely in linked blocks. Immutable and transparent. Used in cryptocurrencies.</div>
+        </div>
+        <div class="col-card col-purple">
+          <div class="col-card-title">🖥️ Virtualization</div>
+          <div class="card-body">Allows multiple virtual machines to run on a single physical computer, improving hardware utilization and resource efficiency.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box"><span class="hl-label">⚡ Exam Tips</span>SaaS = software | PaaS = platform | IaaS = infrastructure | ML is a subset of AI | IoT = smart devices | Blockchain = decentralized</div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which cloud model provides complete software over the Internet?</div><div class="q-ans">✅ SaaS</div></div>
+      <div class="q-item"><div class="q-text">2. Which cloud model provides virtual machines?</div><div class="q-ans">✅ IaaS</div></div>
+      <div class="q-item"><div class="q-text">3. AI learns from data using?</div><div class="q-ans">✅ Machine Learning</div></div>
+      <div class="q-item"><div class="q-text">4. Smart home devices belong to which technology?</div><div class="q-ans">✅ IoT</div></div>
+      <div class="q-item"><div class="q-text">5. Which technology stores data in linked blocks?</div><div class="q-ans">✅ Blockchain</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 8 — DATABASES & SQL
+  ════════════════════════════════════ -->
+  <section class="section" id="ch8">
+    <div class="sec-header">
+      <div class="sec-number">08</div>
+      <div>
+        <div class="sec-title">Databases & SQL Fundamentals</div>
+        <div class="sec-sub">قواعد البيانات وأساسيات SQL</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🗄️</div>Database Concepts</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        قاعدة البيانات: مجموعة منظّمة من البيانات المترابطة يمكن تخزينها وإدارتها واسترجاعها بكفاءة. DBMS: نظام إدارة قواعد البيانات — برنامج لإنشاء وإدارة قواعد البيانات (MySQL، Oracle، PostgreSQL).
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">📚 Database</div><div class="card-body">An organized collection of related data that can be stored, managed, and retrieved efficiently.</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">⚙️ DBMS</div><div class="card-body">Software to create and manage databases.<br><em>Examples: MySQL, SQL Server, Oracle, PostgreSQL</em></div></div>
+      </div>
+      <div class="info-box"><span class="hl-label">✅ Advantages of Using a DBMS</span>Reduced redundancy · Improved security · Data sharing · Backup & recovery · Data consistency</div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔑</div>Keys & Normalization</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المفتاح الأساسي (Primary Key): يُعرِّف كل سجل بشكل فريد ولا يمكن أن يكون NULL. المفتاح الأجنبي (Foreign Key): يربط جداول مختلفة ببعضها. التطبيع (Normalization): تنظيم البيانات لتقليل التكرار وتحسين التكامل.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔑 Primary Key</div><div class="card-body">Uniquely identifies each record in a table. Cannot be NULL. Cannot be duplicate.</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🔗 Foreign Key</div><div class="card-body">Links two tables together. References the Primary Key of another table.</div></div>
+      </div>
+      <div class="info-box"><span class="hl-label">📐 Normalization Forms</span><strong>1NF</strong>: No repeating groups, atomic values. &nbsp;|&nbsp; <strong>2NF</strong>: 1NF + no partial dependencies. &nbsp;|&nbsp; <strong>3NF</strong>: 2NF + no transitive dependencies.</div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📝</div>SQL — CRUD Operations</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        SQL: لغة الاستعلام الهيكلية — تُستخدم لإنشاء البيانات، استرجاعها، تحديثها وحذفها. CRUD: Create=INSERT، Read=SELECT، Update=UPDATE، Delete=DELETE.
+      </div>
+      <div class="formula-box">
+        CREATE → INSERT &nbsp;&nbsp;|&nbsp;&nbsp; READ → SELECT &nbsp;&nbsp;|&nbsp;&nbsp; UPDATE → UPDATE &nbsp;&nbsp;|&nbsp;&nbsp; DELETE → DELETE
+      </div>
+      <div class="code-block">
+        <span class="code-label">SQL Examples</span>
+        SELECT * FROM Students WHERE age &gt; 18;<br>
+        INSERT INTO Students (name, age) VALUES ('Ali', 20);<br>
+        UPDATE Students SET age = 21 WHERE name = 'Ali';<br>
+        DELETE FROM Students WHERE name = 'Ali';
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔀</div>SQL Joins & Transactions</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        INNER JOIN: يُرجع الصفوف المتطابقة فقط. LEFT JOIN: كل صفوف اليسار + المتطابقة. RIGHT JOIN: كل صفوف اليمين + المتطابقة. FULL JOIN: كل الصفوف. خصائص ACID: الذرية، الاتساق، العزل، المتانة.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>JOIN Type</th><th>Returns</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">INNER JOIN</td><td>Only matching rows from both tables</td></tr>
+          <tr><td class="hi">LEFT JOIN</td><td>All rows from left table + matching from right</td></tr>
+          <tr><td class="hi">RIGHT JOIN</td><td>All rows from right table + matching from left</td></tr>
+          <tr><td class="hi">FULL JOIN</td><td>All rows from both tables</td></tr>
+        </tbody>
+      </table>
+      <div class="info-box"><span class="hl-label">⚡ ACID Properties</span><strong>A</strong>tomicity — all or nothing. <strong>C</strong>onsistency — valid state before/after. <strong>I</strong>solation — transactions don't interfere. <strong>D</strong>urability — committed data persists.</div>
+    </div>
+
+    <div class="tip-box"><span class="hl-label">⚡ Exam Tips</span>Primary Key = unique, NOT NULL | Foreign Key = creates relationships | SELECT = retrieve | INSERT = add | UPDATE = modify | DELETE = remove | INNER JOIN = matching rows only</div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. Which key uniquely identifies a row in a table?</div><div class="q-ans">✅ Primary Key</div></div>
+      <div class="q-item"><div class="q-text">2. Which language is used to manage databases?</div><div class="q-ans">✅ SQL</div></div>
+      <div class="q-item"><div class="q-text">3. Which SQL command retrieves data?</div><div class="q-ans">✅ SELECT</div></div>
+      <div class="q-item"><div class="q-text">4. Which JOIN returns only matching rows from both tables?</div><div class="q-ans">✅ INNER JOIN</div></div>
+      <div class="q-item"><div class="q-text">5. What does ACID stand for?</div><div class="q-ans">✅ Atomicity, Consistency, Isolation, Durability</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 9 — PROGRAMMING & OOP
+  ════════════════════════════════════ -->
+  <section class="section" id="ch9">
+    <div class="sec-header">
+      <div class="sec-number">09</div>
+      <div>
+        <div class="sec-title">Programming & OOP</div>
+        <div class="sec-sub">البرمجة والبرمجة كائنية التوجه</div>
+      </div>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">💻</div>Programming Languages</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        لغات البرمجة: منخفضة المستوى (Machine Language, Assembly) — قريبة من الجهاز. عالية المستوى (C, C++, Java, Python, C#, PHP) — قريبة من اللغة الإنسانية.
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">🔵 Low-Level Languages</div><div class="card-body"><strong>Machine Language</strong>: binary (0s and 1s) — directly understood by CPU<br><strong>Assembly Language</strong>: uses mnemonics — needs Assembler to convert</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🟡 High-Level Languages</div><div class="card-body">Human-readable, needs compiler/interpreter<br><em>C, C++, Java, Python, C#, JavaScript, PHP</em></div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔄</div>Program Development Cycle</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        دورة تطوير البرامج: تحليل المشكلة → خوارزمية → مخطط انسيابي → كتابة الكود → الاختبار → تصحيح الأخطاء → الصيانة.
+      </div>
+      <div class="flow-row">
+        <div class="flow-step">Problem Analysis</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Algorithm</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Flowchart</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Coding</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Testing</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Debugging</div><div class="flow-arrow">→</div>
+        <div class="flow-step">Maintenance</div>
+      </div>
+      <div class="two-col" style="margin-top:14px">
+        <div class="col-card col-purple"><div class="col-card-title">📐 Algorithm</div><div class="card-body">A step-by-step procedure used to solve a problem — must be clear, finite, and effective</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">📊 Flowchart</div><div class="card-body">Graphical representation of an algorithm using standard symbols (oval=start/end, rectangle=process, diamond=decision)</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📦</div>Variables, Data Types & Operators</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        المتغيرات تخزّن البيانات. أنواع البيانات: Integer (عدد صحيح)، Float (عشري)، Boolean (صح/خطأ)، String (نص). المعاملات: حسابية (+,-,*,/)، منطقية (AND,OR,NOT)، مقارنة (==, !=, <, >).
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Data Type</th><th>Example</th><th>النوع</th></tr></thead>
+        <tbody>
+          <tr><td class="hi">Integer</td><td>42, -7, 0</td><td class="gold">عدد صحيح</td></tr>
+          <tr><td class="hi">Float / Double</td><td>3.14, -0.5</td><td class="gold">عدد عشري</td></tr>
+          <tr><td class="hi">Boolean</td><td>True / False</td><td class="gold">منطقي</td></tr>
+          <tr><td class="hi">String</td><td>"Hello", "Ahmed"</td><td class="gold">نص</td></tr>
+          <tr><td class="hi">Character</td><td>'A', 'z'</td><td class="gold">حرف</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🏗️</div>OOP — Object-Oriented Programming</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        البرمجة كائنية التوجه تعتمد على الكائنات والفئات. المبادئ الأربعة: التغليف (إخفاء البيانات)، الوراثة (الفئة الفرعية ترث من الأصل)، تعدد الأشكال (نفس العملية بسلوكيات مختلفة)، التجريد (إخفاء التفاصيل الداخلية).
+      </div>
+      <div class="two-col">
+        <div class="col-card col-purple"><div class="col-card-title">📋 Class vs Object</div><div class="card-body"><strong>Class</strong> = Blueprint / template<br><strong>Object</strong> = Instance created from a class<br><em>Class: Car → Object: myCar (Honda Civic)</em></div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🔐 4 OOP Principles</div><div class="card-body"><strong>Encapsulation</strong> — hides data<br><strong>Inheritance</strong> — child class inherits from parent<br><strong>Polymorphism</strong> — same name, different behavior<br><strong>Abstraction</strong> — hides internal details</div></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🔀</div>Control Structures</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        هياكل التحكم: التسلسل (Sequence) — تنفيذ السطر تلو الآخر. الاختيار (Selection) — if/switch. التكرار (Iteration) — for/while/do-while.
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple"><div class="col-card-title">▶️ Sequence</div><div class="card-body">Execute statements one after another in order</div></div>
+        <div class="col-card col-gold"><div class="col-card-title">🔀 Selection</div><div class="card-body">if, else if, else, switch — conditional execution based on a condition</div></div>
+        <div class="col-card col-green"><div class="col-card-title">🔁 Iteration</div><div class="card-body">for, while, do-while — repeat code a number of times or until a condition is met</div></div>
+      </div>
+    </div>
+
+    <div class="tip-box"><span class="hl-label">⚡ Exam Tips</span>Algorithm = steps to solve a problem | Flowchart = graphical algorithm | Class = blueprint | Object = instance | 4 OOP: Encapsulation, Inheritance, Polymorphism, Abstraction</div>
+
+    <div class="quiz-section">
+      <div class="quiz-title">🎯 Practice Questions</div>
+      <div class="q-item"><div class="q-text">1. What is the graphical representation of an algorithm?</div><div class="q-ans">✅ Flowchart</div></div>
+      <div class="q-item"><div class="q-text">2. What is a reusable block of code?</div><div class="q-ans">✅ Function</div></div>
+      <div class="q-item"><div class="q-text">3. Which OOP concept hides data?</div><div class="q-ans">✅ Encapsulation</div></div>
+      <div class="q-item"><div class="q-text">4. An object is created from?</div><div class="q-ans">✅ Class</div></div>
+      <div class="q-item"><div class="q-text">5. Which statement repeats code?</div><div class="q-ans">✅ Loop (for / while)</div></div>
+    </div>
+  </section>
+
+  <hr class="chapter-divider">
+
+  <!-- ════════════════════════════════════
+       CHAPTER 10 — GOLDEN REVIEW
+  ════════════════════════════════════ -->
+  <section class="section" id="ch10">
+    <div class="sec-header">
+      <div class="sec-number">10</div>
+      <div>
+        <div class="sec-title">Golden Review & Exam Cheat Sheet</div>
+        <div class="sec-sub">المراجعة الذهبية والملخص النهائي</div>
+      </div>
+      <div class="sec-line"></div>
+      <div class="weight-badge">⭐ FINAL REVISION</div>
+    </div>
+
+    <!-- Key Comparisons -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">⚖️</div>Most Important Comparisons</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        أهم المقارنات التي تتكرر في الامتحانات: البيانات مقابل المعلومات، RAM مقابل ROM، SSD مقابل HDD، Compiler مقابل Interpreter، أنواع الفيروسات، Switch مقابل Router، HTTP مقابل HTTPS.
+      </div>
+      <table class="data-table">
+        <thead><tr><th>Concept A</th><th>vs</th><th>Concept B</th></tr></thead>
+        <tbody>
+          <tr><td>Data — raw facts</td><td class="hi">vs</td><td>Information — processed data</td></tr>
+          <tr><td>RAM — volatile, temporary</td><td class="hi">vs</td><td>ROM — non-volatile, permanent</td></tr>
+          <tr><td>SSD — fast, silent, flash</td><td class="hi">vs</td><td>HDD — slower, cheaper, magnetic</td></tr>
+          <tr><td>Compiler — whole program</td><td class="hi">vs</td><td>Interpreter — line by line</td></tr>
+          <tr><td>Virus — needs host file</td><td class="hi">vs</td><td>Worm — spreads automatically</td></tr>
+          <tr><td>Switch — uses MAC address</td><td class="hi">vs</td><td>Router — uses IP address</td></tr>
+          <tr><td>HTTP — unencrypted</td><td class="hi">vs</td><td>HTTPS — encrypted</td></tr>
+          <tr><td>IPv4 — 32 bits</td><td class="hi">vs</td><td>IPv6 — 128 bits</td></tr>
+          <tr><td>Primary Key — unique ID</td><td class="hi">vs</td><td>Foreign Key — links tables</td></tr>
+          <tr><td>Class — blueprint</td><td class="hi">vs</td><td>Object — instance of class</td></tr>
+          <tr><td>Multitasking — 1 CPU</td><td class="hi">vs</td><td>Multiprocessing — multiple CPUs</td></tr>
+          <tr><td>Open Source — free, modifiable</td><td class="hi">vs</td><td>Proprietary — paid, closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Memory Tricks -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🧠</div>Quick Memory Tricks</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        حيل للحفظ السريع: CPU = الدماغ، RAM = الذاكرة المؤقتة، ROM = الذاكرة الدائمة، Cache = أسرع ذاكرة بعد السجلات، Firewall = فلترة الشبكة، DNS = ترجمة الأسماء لـ IP، DHCP = توزيع IP تلقائي.
+      </div>
+      <div class="chips">
+        <span class="chip purple">CPU = 🧠 Brain</span>
+        <span class="chip">RAM = ⚡ Temp Memory</span>
+        <span class="chip gold">ROM = 🔒 Permanent</span>
+        <span class="chip purple">Cache = 🚀 Fastest after Registers</span>
+        <span class="chip">Firewall = 🛡️ Traffic Filter</span>
+        <span class="chip gold">DNS = 📛 Name to IP</span>
+        <span class="chip purple">DHCP = 🔄 Auto IP</span>
+        <span class="chip green">Kernel = ❤️ Core of OS</span>
+        <span class="chip gold">Switch = 📬 Uses MAC</span>
+        <span class="chip purple">Router = 🗺️ Uses IP</span>
+        <span class="chip green">SaaS = ☁️ Software</span>
+        <span class="chip gold">PaaS = 🛠️ Platform</span>
+        <span class="chip purple">IaaS = 🏗️ Infrastructure</span>
+        <span class="chip green">ML ⊂ AI</span>
+        <span class="chip gold">Blockchain = ⛓️ Decentralized</span>
+      </div>
+    </div>
+
+    <!-- Per-Chapter Cheat -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">📋</div>Chapter-by-Chapter Cheat Sheet</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        ملخص سريع لكل فصل للمراجعة النهائية قبل الامتحان.
+      </div>
+      <div class="three-col">
+        <div class="col-card col-purple">
+          <div class="col-card-title">Ch.1 Fundamentals</div>
+          <div class="card-body" style="font-size:12.5px">IPO Cycle<br>Data → Information<br>CPU = Processing<br>Monitor = Output<br>Keyboard = Input</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">Ch.2 Hardware</div>
+          <div class="card-body" style="font-size:12.5px">CPU = Brain<br>Cache fastest after Registers<br>RAM = volatile<br>ROM = firmware<br>SSD &gt; HDD</div>
+        </div>
+        <div class="col-card col-green">
+          <div class="col-card-title">Ch.3 Software</div>
+          <div class="card-body" style="font-size:12.5px">OS = System SW<br>Word = App SW<br>Compiler = whole<br>Interpreter = line by line<br>Firmware in ROM</div>
+        </div>
+        <div class="col-card col-purple">
+          <div class="col-card-title">Ch.4 OS</div>
+          <div class="card-body" style="font-size:12.5px">Kernel = core<br>Shell = user interface<br>Virtual Mem = disk<br>Linux = Open Source<br>Windows = Proprietary</div>
+        </div>
+        <div class="col-card col-red">
+          <div class="col-card-title">Ch.5 Security</div>
+          <div class="card-body" style="font-size:12.5px">CIA Triad<br>Worm = auto spread<br>Ransomware = encrypts<br>Firewall = filters<br>Backup = best defense</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">Ch.6 Networks</div>
+          <div class="card-body" style="font-size:12.5px">Switch = MAC<br>Router = IP<br>DNS = name→IP<br>DHCP = auto IP<br>HTTPS = encrypted</div>
+        </div>
+        <div class="col-card col-green">
+          <div class="col-card-title">Ch.7 Cloud & AI</div>
+          <div class="card-body" style="font-size:12.5px">IaaS / PaaS / SaaS<br>ML ⊂ AI ⊃ Deep Learning<br>IoT = smart devices<br>Blockchain = decentralized</div>
+        </div>
+        <div class="col-card col-purple">
+          <div class="col-card-title">Ch.8 Databases</div>
+          <div class="card-body" style="font-size:12.5px">Primary Key = unique<br>Foreign Key = links<br>SELECT = retrieve<br>INNER JOIN = matching<br>ACID = transactions</div>
+        </div>
+        <div class="col-card col-gold">
+          <div class="col-card-title">Ch.9 Programming</div>
+          <div class="card-body" style="font-size:12.5px">Class = blueprint<br>Object = instance<br>4 OOP principles<br>Algorithm = steps<br>Flowchart = diagram</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Tips -->
+    <div class="content-card">
+      <div class="card-title"><div class="card-icon">🏆</div>Exam Success Strategies</div>
+      <div class="card-ar">
+        <span class="card-ar-label">الشرح بالعربي</span>
+        استراتيجيات النجاح في الامتحان: اقرأ السؤال بعناية، استبعد الإجابات الخاطئة، تذكّر المقارنات الرئيسية، راجع المفاهيم المتكررة، وتدرّب على أسئلة الاختيار من متعدد.
+      </div>
+      <ul class="points">
+        <li><span class="pt-dot green"></span><strong>Read carefully</strong> — understand what the question is really asking before choosing</li>
+        <li><span class="pt-dot green"></span><strong>Eliminate wrong answers</strong> — narrow down choices by ruling out what's definitely wrong</li>
+        <li><span class="pt-dot green"></span><strong>Remember key comparisons</strong> — the vs. table above covers the most tested pairs</li>
+        <li><span class="pt-dot green"></span><strong>Focus on repeated topics</strong> — CPU, OS, Malware, Networks, SQL are the highest-weight areas</li>
+        <li><span class="pt-dot green"></span><strong>Practice MCQs</strong> — the more questions you practice, the faster you recognize patterns</li>
+      </ul>
+    </div>
+
+    <!-- Final Questions -->
+    <div class="quiz-section">
+      <div class="quiz-title">🏆 Final Practice — 10 Golden Questions</div>
+      <div class="q-item"><div class="q-text">1. Brain of the computer?</div><div class="q-ans">✅ CPU</div></div>
+      <div class="q-item"><div class="q-text">2. Which malware encrypts files and demands payment?</div><div class="q-ans">✅ Ransomware</div></div>
+      <div class="q-item"><div class="q-text">3. Which network device uses MAC addresses?</div><div class="q-ans">✅ Switch</div></div>
+      <div class="q-item"><div class="q-text">4. Which SQL command retrieves data?</div><div class="q-ans">✅ SELECT</div></div>
+      <div class="q-item"><div class="q-text">5. Which cloud model provides complete software?</div><div class="q-ans">✅ SaaS</div></div>
+      <div class="q-item"><div class="q-text">6. Which memory loses data when power is off?</div><div class="q-ans">✅ RAM</div></div>
+      <div class="q-item"><div class="q-text">7. What is the core of the OS?</div><div class="q-ans">✅ Kernel</div></div>
+      <div class="q-item"><div class="q-text">8. Which OOP principle hides data?</div><div class="q-ans">✅ Encapsulation</div></div>
+      <div class="q-item"><div class="q-text">9. Which protocol translates domain names to IP addresses?</div><div class="q-ans">✅ DNS</div></div>
+      <div class="q-item"><div class="q-text">10. Which is faster: Compiler or Interpreter at runtime?</div><div class="q-ans">✅ Compiler (compiles once, runs fast)</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div style="text-align:center; padding: 40px 0 20px; border-top: 1px solid var(--border); margin-top: 20px;">
+    <div style="font-family: Orbitron, monospace; font-size: 10px; color: var(--purple2); letter-spacing: 3px; margin-bottom: 8px;">GOLDEN COMPUTER · COMPETITIVE EXAM GUIDE 2026</div>
+    <div style="font-family: Cairo, sans-serif; font-size: 13px; color: var(--muted);">دليل الاستعداد الشامل للامتحان التنافسي — جميع الحقوق محفوظة</div>
+    <div style="margin-top: 14px;">
+      <span class="chip purple">10 Chapters</span>
+      <span class="chip gold">Best of Luck ✨</span>
+      <span class="chip green">You Got This 💪</span>
+    </div>
+  </div>
+
+</div><!-- end page-wrap -->
+
+<script>
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
